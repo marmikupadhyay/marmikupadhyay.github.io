@@ -1,0 +1,57 @@
+window.onload = function() {
+  let x = document.getElementById("sec-1");
+  console.log(x);
+  var c;
+  function calcscroll(n, obj) {
+    var b = obj.scrollHeight;
+    b = b + n;
+    c = window.scrollY;
+    return b;
+  }
+
+  var s0 = document.getElementById("empty");
+  var s1 = document.getElementById("sec-1");
+  var s2 = document.getElementById("sec-2");
+  var s3 = document.getElementById("sec-3");
+  var s4 = document.getElementById("sec-4");
+  var y = document.getElementById("middle");
+
+  console.log(s0.scrollHeight);
+
+  y.addEventListener("scroll", calcscroll);
+  var lens = [];
+  var links = document.querySelectorAll(".navlink a");
+  window.addEventListener("click", function() {
+    c = window.scrollY;
+    lens[0] = 0;
+    lens[1] = calcscroll(lens[0], s1);
+    lens[2] = calcscroll(lens[1], s2);
+    lens[3] = calcscroll(lens[2], s3);
+    lens[4] = calcscroll(lens[3], s4);
+    console.log(lens[0]);
+    console.log(lens[1]);
+    console.log(lens[2]);
+    console.log(lens[3]);
+    console.log(lens[4]);
+    var t;
+    // for (var i = 0; i < lens.length; i++) {
+    console.log(c);
+
+    if (c < links[4]) console.log(-10);
+
+    if (c < links[4]) {
+      console.log(12);
+      if (c < links[3]) {
+        if (c < links[2]) {
+          if (c < links[1]) t = 0;
+          else t = 1;
+        } else t = 2;
+      } else t = 3;
+    } else t = 4;
+    console.log(t);
+    for (var j = 0; j < links.length; j++) {
+      if (j === t) links[j].className = "current";
+      else links[j].className = "";
+    }
+  });
+};
