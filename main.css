@@ -67,69 +67,47 @@ body {
   width: 100%;
 }
 
-/* .col-1::after,
-.col-2::after,
-.col-3::after,
-.col-4::after,
-.col-5::after,
-.col-6::after,
-.col-7::after,
-.col-8::after,
-.col-9::after,
-.col-10::after,
-.col-11::after,
-.col-12::after {
-  content: "\200b";
-} */
+.typewriter {
+  animation: typing 3.5s steps(30, end), blink-caret 0.5s step-end infinite;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid black;
+}
 
-/* .row-1 {
-  height: 8.33%;
-  width: 100%;
+.typewriter2 {
+  animation: typing 3.5s steps(30, end), blink-caret 0.5s step-end infinite;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid black;
 }
-.row-2 {
-  height: 16.66%;
-  width: 100%;
+
+@keyframes erase {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
 }
-.row-3 {
-  height: 25%;
-  width: 100%;
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
-.row-4 {
-  height: 33.33%;
-  width: 100%;
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: black;
+  }
 }
-.row-5 {
-  height: 41.66%;
-  width: 100%;
-}
-.row-6 {
-  height: 50%;
-  width: 100%;
-}
-.row-7 {
-  height: 58.33%;
-  width: 100%;
-}
-.row-8 {
-  height: 66.66%;
-  width: 100%;
-}
-.row-9 {
-  height: 75%;
-  width: 100%;
-}
-.row-10 {
-  height: 83.33%;
-  width: 100%;
-}
-.row-11 {
-  height: 91.66%;
-  width: 100%;
-}
-.row-12 {
-  height: 100%;
-  width: 100%;
-} */
 
 .row {
   width: 100%;
@@ -261,7 +239,8 @@ body {
   /*opacity: 0.5; */
   /* overflow: hidden; */
   background-attachment: fixed;
-  margin-left: 25%;
+  position: absolute;
+  left: 25%;
 }
 
 .sec-1,
@@ -275,7 +254,7 @@ body {
 }
 
 .heading h1 {
-  font-size: 5em;
+  font-size: 12vh;
   text-align: left;
   font-family: "Lato";
   text-transform: uppercase;
@@ -292,14 +271,18 @@ body {
   flex-direction: row;
   border: 1px solid black;
   justify-content: space-around;
+  border-radius: 0;
 }
 
 .sec-1 .mybox .img_container {
   margin: auto;
   margin-left: 10px;
+  width: 33%;
 }
 .sec-1 .mybox img {
   float: left;
+  height: auto;
+  width: 100%;
 }
 .col-6 hr {
   margin-top: 0;
@@ -308,6 +291,7 @@ body {
 .sec-1 .mybox p {
   margin: 10%;
   font-size: 1em;
+  width: 66%;
 }
 
 #hed2 {
@@ -371,52 +355,99 @@ body {
 
 .sec-1 .card {
   background: rgba(211, 246, 219, 0.9);
-  box-shadow: 2px 2px 2px 0 black;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.7), 0 8px 20px 0 rgba(0, 0, 0, 0.6);
   margin: 10px;
+  border-radius: 0;
+  /* color: white; */
+  font-family: "Lato";
 }
 
-.sec-1 .card:hover {
-  box-shadow: none;
+.sec-1 .card .card-body {
+  background: white;
 }
-
 /* ################## Part - 2 #####################  */
 
 .sec-2 .skillbox {
   margin: auto;
-  margin-left: 3%;
 }
 .sec-2 .skillbox h2 {
   border-left: 8px solid #5efc8d;
   border-bottom: 1px solid lightgray;
+  margin-left: 3%;
 }
 
 .sec-2 .skillbox .skill {
   margin: auto;
-  margin: 30px 0;
-  margin-left: 3%;
+  margin: 30px 5%;
+  display: flex;
+  flex-direction: row;
 }
 
-.sec-2 .skillbox .skill h3 {
+.sec-2 .skillbox h3 {
   border-left: 4px solid #8377d1;
   border-bottom: 1px solid lightgray;
+  margin: auto;
+  margin: 30px 0;
+  margin-left: 5%;
 }
 .sec-2 .skillbox .skill h4 {
   /* border-bottom: 1px solid lightgrey; */
   margin: 15px;
 }
-.sec-2 .progress {
-  margin: 15px;
-  height: 10px;
-  width: 70%;
+.sec-2 #skillwrap {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  text-align: center;
+  align-items: center;
+}
+.sec-2 .skillbox .skill img {
+  height: auto;
+  width: 50%;
 }
 
-.sec-2 .progress .progress-bar-striped {
-  text-align: right;
+.sec-2 .progress {
+  margin: 15px;
+  height: 1vh;
+  /* width: 100%; */
+  margin: auto;
+  background: white;
+}
+
+.sec-2 .progress .progress-bar {
+  /* text-align: right; */
   color: white;
   font-weight: bold;
   align-self: center;
+  position: relative;
 }
 
+.progress-circle::after {
+  background: #343a40;
+}
+.progress-circle span {
+  color: white;
+}
+/* 
+.sec-2 .progress .progress-bar::before {
+  content: "pp";
+  position: absolute;
+  right: 0;
+  color: black;
+  min-width: 2px;
+  height: auto;
+  border-radius: 100%;
+  background: white;
+}
+ */
+
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
 #skill2 h4,
 #skill2 .progress {
   margin-left: 5%;
@@ -459,8 +490,96 @@ body {
 }
 
 /* ##################### Part -4 ##################### */
+
+.sec-4 {
+  position: relative;
+}
+
+.sec-4 .row {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: -15%;
+}
+
+.tree {
+  display: flex;
+  flex-direction: column;
+}
+.tree .level .col-7 {
+  width: 54%;
+}
+.tree .level .col-5 {
+  width: 46%;
+}
+
+.tree .level .col-7.left {
+  background: url(images/treeleft.png);
+  background-size: cover;
+  float: left;
+  min-height: 200px;
+  min-width: 50%;
+  position: relative;
+  /* widows: 55%; */
+}
+.tree .level .col-7.left .info {
+  background: wheat;
+  margin: 5px;
+  position: absolute;
+  width: 40%;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.7), 0 8px 20px 0 rgba(0, 0, 0, 0.6);
+  left: 30%;
+  top: 40%;
+}
+.tree .level .col-7.right .info {
+  background: wheat;
+  margin: 5px;
+  position: absolute;
+  width: 40%;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.7), 0 8px 20px 0 rgba(0, 0, 0, 0.6);
+  left: 40%;
+  top: 40%;
+}
+.tree .level .col-7 .info p {
+  margin: 5px;
+}
+
+.tree .level .col-7.right {
+  background: url(images/treeright.png);
+  float: right;
+  min-height: 200px;
+  min-width: 50%;
+  position: relative;
+  background-size: cover;
+}
+
+.row.last {
+  margin-bottom: 0;
+}
 /* ##################### Part -5 ##################### */
+
+.sec-5 .row {
+  display: flex;
+  flex-direction: row;
+}
+
+.sec-5 .row .card {
+  margin: 20px;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.7), 0 8px 20px 0 rgba(0, 0, 0, 0.6);
+}
+
+.sec-5 .row .card img {
+  margin: 0;
+  height: auto;
+  width: 100%;
+  /* margin-right: 20px; */
+}
+
+.invis {
+  display: none;
+}
+
 /* ##################### Part -6 ##################### */
+
 .sec-6 {
   position: relative;
 }
@@ -468,12 +587,18 @@ body {
 .sec-6 #dabba {
   display: flex;
   flex-direction: row;
+  margin: 10% 0;
 }
 
 .form-container {
   width: 50%;
   float: right;
   padding: 20px;
+}
+
+.form-container input {
+  border-radius: 0;
+  font-family: "Lato";
 }
 
 .sec-6 .sidebox {
@@ -567,6 +692,125 @@ body {
 #empty {
   height: 0;
 }
+.social {
+  text-align: center;
+  position: relative;
+}
+.icon-bar {
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
+/* Style the icon bar links */
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+}
+
+/* Style the social media icons with color, if you want */
+.icon-bar a:hover {
+  background-color: #0f5257;
+}
+
+.facebook {
+  background: #3b5998;
+  color: white;
+}
+
+.twitter {
+  background: #55acee;
+  color: white;
+}
+
+.google {
+  background: #dd4b39;
+  color: white;
+}
+
+.linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.col-3.right .foot {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  font-family: "Lato";
+  font-weight: 100;
+}
 /* BetaTes****** */
 /* cbac8-7bd8c@alt.coms */
+
+@media only screen and (max-width: 680px) {
+  .row.mainpage .col-3.left {
+    display: none;
+  }
+  .row.mainpage .col-3.right {
+    display: none;
+  }
+  .row.mainpage .col-6 {
+    width: 100%;
+    position: unset;
+  }
+
+  .heading h1 {
+    font-size: 5.5vh;
+  }
+
+  .hobbies {
+    flex-direction: column !important;
+  }
+
+  .hobbies .col-4 {
+    width: 100%;
+    flex-direction: row !important;
+  }
+  .hobbies .col-4 .card {
+    width: 50%;
+  }
+
+  .banner span {
+    font-size: 1rem;
+  }
+
+  #lamba {
+    font-size: 5.5vh;
+  }
+
+  .sec-5 .row {
+    flex-direction: column !important;
+  }
+
+  .sec-5 .row .col-6 {
+    width: 100%;
+  }
+  #dabba {
+    flex-direction: column !important;
+  }
+
+  #dabba .form-container {
+    width: 100%;
+  }
+
+  #dabba .sidebox {
+    width: 100%;
+  }
+
+  .sidebox div {
+    font-size: 0.75rem;
+  }
+}
