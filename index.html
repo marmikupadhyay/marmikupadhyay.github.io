@@ -9,23 +9,22 @@
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     />
 
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link
       href="https://fonts.googleapis.com/css?family=Antic"
       rel="stylesheet"
     />
-    <script src="https://kit.fontawesome.com/yourcode.js"></script>
     <link
-      href="https://fonts.googleapis.com/css?family=Alegreya Sans SC"
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css"
+    />
+    <script src="https://kit.fontawesome.com/yourcode.js"></script>
+
     <link
       href="https://fonts.googleapis.com/css?family=Cinzel"
       rel="stylesheet"
@@ -34,6 +33,12 @@
       href="https://fonts.googleapis.com/css?family=Lato:100,300&display=swap"
       rel="stylesheet"
     />
+    1
+    <link href="css-circular-prog-bar.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+      new WOW().init();
+    </script>
     <link rel="stylesheet" href="main.css" />
     <script src="main.js"></script>
     <title>Marmik</title>
@@ -63,59 +68,41 @@
           <hr id="leftend" />
         </div>
       </div>
-
+      <script>
+        function addtypewriter(e) {
+          e.className += " typewriter";
+        }
+      </script>
       <div class="col-6" id="middle">
         <section class="sec-1" id="sec-1">
-          <div class="heading"><h1>About Me</h1></div>
+          <div class="heading wow slideInLeft slow"><h1>About Me</h1></div>
           <hr />
-          <div class="mybox">
+          <div class="mybox jumbotron p-1">
             <div class="img_container">
               <img src="images/download.jpg" alt="" />
             </div>
             <p>
               Hey There Visitor ! <br />
               I am Marmik Upahyay , a student doing my B.Tech Computer Science
-              and engineering in NIT Tiruchirappalli. I am learning to code and
-              develop websites and applications.
+              and engineering in NIT Tiruchirappalli. <br />
+              <span>I am a </span>
+              <span class="wow typewriter2">Coder</span>
             </p>
-          </div>
-          <div class="heading" id="hed2">
-            <h2>Education</h2>
-          </div>
-          <hr id="smallhr" />
-          <div class="mytable">
-            <table class="stud">
-              <tr>
-                <th id="tabcolone">Institiute</th>
-                <th id="tabcoltwo">Courses</th>
-                <th id="tabcolthree">Year</th>
-              </tr>
-              <tr>
-                <td id="tabcolone">Bright Day School</td>
-                <td id="tabcoltwo">Higher Secondary</td>
-                <td id="tabcolthree">2017- 2019</td>
-              </tr>
-              <tr>
-                <td id="tabcolone">NIT Trichy</td>
-                <td id="tabcoltwo">B.Tech CS</td>
-                <td id="tabcolthree">2019-Present</td>
-              </tr>
-            </table>
           </div>
           <div class="heading" id="hed2">
             <h2>Hobbies</h2>
           </div>
           <hr id="smallhr" />
-          <div class="hobbies animate-box" data-animate-effect="fadeInLeft">
+          <div class="hobbies">
             <div class="col-4">
-              <div class="card">
+              <div class="card wow zoomIn">
                 <img src="images/hobby1.png" alt="" class="card-img-top" />
                 <div class="card-body">
                   <h3 class="card-title">Sports</h3>
                 </div>
               </div>
 
-              <div class="card">
+              <div class="card wow zoomIn">
                 <img src="images/hobby2.png" alt="" class="card-img-top" />
                 <div class="card-body">
                   <h3 class="card-title">Reading</h3>
@@ -123,14 +110,14 @@
               </div>
             </div>
             <div class="col-4">
-              <div class="card">
+              <div class="card wow zoomIn">
                 <img src="images/hobby3.png" alt="" class="card-img-top" />
                 <div class="card-body">
                   <h3 class="card-title">Music</h3>
                 </div>
               </div>
 
-              <div class="card">
+              <div class="card wow zoomIn">
                 <img src="images/hobby4.png" alt="" class="card-img-top" />
                 <div class="card-body">
                   <h3 class="card-title">Dance</h3>
@@ -138,14 +125,14 @@
               </div>
             </div>
             <div class="col-4">
-              <div class="card">
+              <div class="card wow zoomIn">
                 <img src="images/hobby5.png" alt="" class="card-img-top" />
                 <div class="card-body">
                   <h3 class="card-title">Coding</h3>
                 </div>
               </div>
 
-              <div class="card">
+              <div class="card wow zoomIn">
                 <img src="images/hobby2.png" alt="" class="card-img-top" />
                 <div class="card-body">
                   <h3 class="card-title">Sports</h3>
@@ -155,52 +142,84 @@
           </div>
         </section>
         <section class="sec-2" id="sec-2">
-          <div class="heading">
+          <div class="heading wow slideInLeft slow">
             <h1>Skills</h1>
           </div>
           <hr />
 
           <div class="skillbox">
             <h2>Technical Skills</h2>
+            <h3>Coding - What I know and how much.</h3>
             <div class="skill">
-              <h3>Coding - What I know and how much.</h3>
-              <h4>C</h4>
-              <div class="progress">
-                <div class="progress-bar-striped bg-warning" style="width:70%">
-                  70%
+              <div id="skillwrap">
+                <h4>C</h4>
+                <img src="images/c.png" alt="" />
+                <div class="progress-circle over50 p70">
+                  <span>70%</span>
+                  <div class="left-half-clipper">
+                    <div class="first50-bar"></div>
+                    <div class="value-bar"></div>
+                  </div>
                 </div>
               </div>
-              <h4>C++</h4>
-              <div class="progress">
-                <div class="progress-bar-striped  bg-success" style="width:80%">
-                  80%
+              <div id="skillwrap">
+                <h4>C++</h4>
+                <img src="images/c++.png" alt="" />
+                <div class="progress-circle over50 p80">
+                  <span>80%</span>
+                  <div class="left-half-clipper">
+                    <div class="first50-bar"></div>
+                    <div class="value-bar"></div>
+                  </div>
                 </div>
               </div>
-              <h4>Python</h4>
-              <div class="progress">
-                <div class="progress-bar-striped  bg-danger" style="width:30%">
-                  30%
+              <div id="skillwrap">
+                <h4>Python</h4>
+                <img src="images/python.png" alt="" />
+                <div class="progress-circle p30">
+                  <span>30%</span>
+                  <div class="left-half-clipper">
+                    <div class="first50-bar"></div>
+                    <div class="value-bar"></div>
+                  </div>
                 </div>
               </div>
             </div>
+            <h3>Web Devlopment - What I know and how much.</h3>
             <div class="skill">
-              <h3>Web Devlopment - What I know and how much.</h3>
-              <h4>Html5</h4>
-              <div class="progress">
-                <div class="progress-bar-striped  bg-warning" style="width:60%">
-                  60%
+              <div id="skillwrap">
+                <h4>Html5</h4>
+                <img src="images/html5.png" alt="" />
+                <div class="progress-circle over50 p70">
+                  <span>70%</span>
+                  <div class="left-half-clipper">
+                    <div class="first50-bar"></div>
+                    <div class="value-bar"></div>
+                  </div>
                 </div>
               </div>
-              <h4>CSS</h4>
-              <div class="progress">
-                <div class="progress-bar-striped  bg-warning" style="width:70%">
-                  70%
+
+              <div id="skillwrap">
+                <h4>CSS</h4>
+                <img src="images/css3.png" alt="" />
+                <div class="progress-circle over50 p80">
+                  <span>80%</span>
+                  <div class="left-half-clipper">
+                    <div class="first50-bar"></div>
+                    <div class="value-bar"></div>
+                  </div>
                 </div>
               </div>
-              <h4>JavaScript</h4>
-              <div class="progress">
-                <div class="progress-bar-striped  bg-danger" style="width:30%">
-                  30%
+
+              <div id="skillwrap">
+                <h4>JavaScript</h4>
+                <img src="images/js.png" alt="" />
+                <div class="progress-circle p40">
+                  <span>40%</span>
+                  <div class="left-half-clipper">
+                    <div class="first50-bar"></div>
+                    <div class="value-bar"></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -210,39 +229,39 @@
             <h2>Soft Skills</h2>
             <h4>Communication</h4>
             <div class="progress">
-              <div class="progress-bar-striped  bg-success" style="width:80%">
+              <div class="progress-bar  bg-success" style="width:80%">
                 80%
               </div>
             </div>
             <h4>Problem Solving</h4>
             <div class="progress">
-              <div class="progress-bar-striped  bg-success" style="width:90%">
+              <div class="progress-bar  bg-success" style="width:90%">
                 90%
               </div>
             </div>
             <h4>Creativity</h4>
             <div class="progress">
-              <div class="progress-bar-striped  bg-success" style="width:80%">
+              <div class="progress-bar  bg-success" style="width:80%">
                 80%
               </div>
             </div>
             <h4>Interpersonal Skills</h4>
             <div class="progress">
-              <div class="progress-bar-striped  bg-success" style="width:75%">
+              <div class="progress-bar  bg-success" style="width:75%">
                 75%
               </div>
             </div>
             <h4>LeaderShip</h4>
             <div class="progress">
-              <div class="progress-bar-striped  bg-success" style="width:90%">
+              <div class="progress-bar  bg-success" style="width:90%">
                 90%
               </div>
             </div>
           </div>
         </section>
         <section class="sec-3" id="sec-3">
-          <div class="heading">
-            <h1>Experience</h1>
+          <div class="heading wow slideInLeft slow">
+            <h1 id="lamba">Experience</h1>
           </div>
           <hr />
           <div class="banner">
@@ -263,61 +282,151 @@
               Experiences</span
             >
           </div>
-          <div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas
-              nostrum eos molestias, voluptatibus esse, adipisci pariatur vero
-              blanditiis aperiam possimus, nemo ipsa! Facilis tempora nam
-              corporis quo ab voluptate pariatur autem recusandae porro minima
-              ipsa expedita aspernatur, rem sint ratione nostrum animi totam.
-              Quas dignissimos porro sunt? Necessitatibus similique ex
-              asperiores excepturi eveniet facilis suscipit dolorum dolorem,
-              officia mollitia ipsam inventore facere cum ipsa quidem ullam
-              quisquam error consequuntur provident rerum! Eveniet alias soluta
-              veritatis, explicabo corrupti quod accusantium rem excepturi
-              facilis unde at pariatur reprehenderit quo cumque impedit dolorem,
-              veniam consectetur, placeat molestias ex nostrum sit recusandae
-              modi fuga.
-            </p>
-          </div>
+          <div></div>
         </section>
         <section class="sec-4" id="sec-4">
-          <div class="heading">
-            <h1>Achivements</h1>
+          <div class="heading wow slideInLeft slow">
+            <h1 id="lamba">Achivements</h1>
           </div>
           <hr />
-          <div>
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore,
-              sunt magni. Blanditiis delectus a placeat obcaecati earum! Veniam
-              ad consequatur, accusamus ducimus eum dicta natus exercitationem
-              aut, placeat reprehenderit tempore nesciunt magnam temporibus cum,
-              molestias ex! Tempore nemo ipsa illum necessitatibus! Odit, ad
-              totam? In est similique iure consectetur nostrum. Lorem ipsum
-              dolor sit amet consectetur adipisicing elit. Temporibus neque
-              suscipit eaque porro ea sit iusto, et voluptates voluptatem
-              molestiae officia rem quaerat eveniet assumenda labore totam,
-              nostrum expedita sunt odit. Reprehenderit et maxime recusandae
-              eveniet, molestias magni illo earum incidunt accusantium, libero
-              repellendus qui accusamus quaerat exercitationem placeat! Autem,
-              distinctio voluptatem aliquam officia temporibus nam magni et
-              consequatur, veniam, repellat minus nihil eaque laborum! Corporis
-              sunt reiciendis voluptates veritatis ullam animi ratione molestiae
-              incidunt. Deserunt, eligendi? Veniam magni at a fugit voluptatum
-              beatae voluptatem molestiae tenetur sunt inventore aliquid
-              consectetur perferendis repellat odio ex soluta labore non,
-              repellendus nihil.
-            </p>
+          <div class="tree">
+            <div class="row level" id="lefttree">
+              <div class="col-7 left">
+                <div class="info">
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Quibusdam, iste?
+                  </p>
+                </div>
+              </div>
+              <div class="col-5"><div class="info"></div></div>
+            </div>
+            <div class="row level" id="righttree">
+              <div class="col-5"><div class="info"></div></div>
+              <div class="col-7 right">
+                <div class="info">
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Quibusdam, iste?
+                  </p>
+                </div>
+                <div class="info"></div>
+              </div>
+            </div>
+            <div class="row level last" id="lefttree">
+              <div class="col-7 left">
+                <div class="info">
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Quibusdam, iste?
+                  </p>
+                </div>
+              </div>
+              <div class="col-5">
+                <div class="info"></div>
+              </div>
+            </div>
           </div>
         </section>
+        <script>
+          function showcard(e) {
+            e.children[1].className = "card-body";
+          }
+
+          function hidecard(e) {
+            e.children[1].className += " invis";
+          }
+        </script>
         <section class="sec-5" id="sec-5">
-          <div class="heading">
+          <div class="heading wow slideInLeft slow">
             <h1>My Works</h1>
           </div>
           <hr />
+          <div class="row">
+            <div class="col-6">
+              <div
+                class="card"
+                onmouseover="showcard(this)"
+                onmouseout="hidecard(this)"
+              >
+                <img src="images/02.jpg" alt="" class="card-img-top" />
+                <div class="card-body invis">
+                  <h4 class="card-title">Pehla</h4>
+                  <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Facilis dolorem nesciunt accusantium ut suscipit possimus
+                    vel ab omnis veniam voluptatum.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div
+                class="card"
+                onmouseover="showcard(this)"
+                onmouseout="hidecard(this)"
+              >
+                <img
+                  src="images/03.jpg"
+                  alt=""
+                  class="card-img-top"
+                  id="doosra"
+                />
+                <div class="card-body invis">
+                  <h4 class="card-title">Doosra</h4>
+                  <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Facilis dolorem nesciunt accusantium ut suscipit possimus
+                    vel ab omnis veniam voluptatum.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div
+                class="card"
+                onmouseover="showcard(this)"
+                onmouseout="hidecard(this)"
+              >
+                <img src="images/02.jpg" alt="" class="card-img-top" />
+                <div class="card-body invis">
+                  <h4 class="card-title">Teesra</h4>
+                  <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Facilis dolorem nesciunt accusantium ut suscipit possimus
+                    vel ab omnis veniam voluptatum.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div
+                class="card"
+                onmouseover="showcard(this)"
+                onmouseout="hidecard(this)"
+              >
+                <img
+                  src="images/03.jpg"
+                  alt=""
+                  class="card-img-top"
+                  id="doosra"
+                />
+                <div class="card-body invis">
+                  <h4 class="card-title">Chotha</h4>
+                  <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Facilis dolorem nesciunt accusantium ut suscipit possimus
+                    vel ab omnis veniam voluptatum.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
         <section class="sec-6" id="sec-6">
-          <div class="heading">
+          <div class="heading wow slideInLeft slow">
             <h1>Get In Touch</h1>
           </div>
           <hr />
@@ -380,6 +489,7 @@
               </div>
             </div>
           </div>
+          <div id="nakama"></div>
         </section>
       </div>
       <div id="empty"></div>
@@ -407,6 +517,21 @@
               </li>
             </ul>
           </nav>
+        </div>
+        <div class="social col-6">
+          <div class="icon-bar">
+            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="google"><i class="fa fa-google"></i></a>
+            <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+            <a href="#" class="youtube"><i class="fa fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="foot">
+          <h2>
+            Made with <span style="color:rgba(255,0,0,.7);">&#x2764;</span> By
+            Marmik
+          </h2>
         </div>
       </div>
     </section>
