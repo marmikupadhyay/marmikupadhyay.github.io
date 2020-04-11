@@ -498,7 +498,7 @@ body {
 .sec-4 .row {
   display: flex;
   flex-direction: row;
-  margin-bottom: -15%;
+  margin-bottom: -16%;
 }
 
 .tree {
@@ -524,6 +524,7 @@ body {
 .tree .level .col-7.left .info {
   background: wheat;
   margin: 5px;
+  font-size: 2vh;
   position: absolute;
   width: 40%;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.7), 0 8px 20px 0 rgba(0, 0, 0, 0.6);
@@ -533,6 +534,7 @@ body {
 .tree .level .col-7.right .info {
   background: wheat;
   margin: 5px;
+  font-size: 2vh;
   position: absolute;
   width: 40%;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.7), 0 8px 20px 0 rgba(0, 0, 0, 0.6);
@@ -548,6 +550,7 @@ body {
   float: right;
   min-height: 200px;
   min-width: 50%;
+  width: 57%;
   position: relative;
   background-size: cover;
 }
@@ -632,6 +635,12 @@ body {
 }
 
 /* ################## Right ######################### */
+
+#mob {
+  display: none;
+  width: 100%;
+  text-align: center;
+}
 
 /* ###################### NAV ####################### */
 
@@ -756,8 +765,22 @@ body {
 /* cbac8-7bd8c@alt.coms */
 
 @media only screen and (max-width: 680px) {
+  .heading h1 {
+    margin-left: 0 !important;
+  }
+  .row.mainpage {
+    flex-direction: column !important;
+    flex-wrap: wrap;
+    height: unset !important;
+  }
+  #innerwrap {
+    all: unset !important;
+  }
   .row.mainpage .col-3.left {
-    display: none;
+    width: 100%;
+    position: unset;
+    height: 100vh !important;
+    /* display: none; */
   }
   .row.mainpage .col-3.right {
     display: none;
@@ -769,6 +792,21 @@ body {
 
   .heading h1 {
     font-size: 5.5vh;
+  }
+  .mybox {
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: center;
+    margin: 10% !important;
+    width: 80% !important;
+  }
+  .mybox .img_container {
+    width: 100%;
+    float: none;
+    margin: 10px 0 !important;
+  }
+  .mybox p {
+    width: 100%;
   }
 
   .hobbies {
@@ -791,6 +829,22 @@ body {
     font-size: 5.5vh;
   }
 
+  .skill {
+    width: 90%;
+  }
+  .tree .level .col-7 .info {
+    font-size: 1.5vh !important;
+    top: 30% !important;
+  }
+  .tree .level .col-7 {
+    width: 60% !important;
+  }
+  .tree .level .col-7.left {
+    background-position: right !important;
+  }
+  #mob {
+    display: unset !important;
+  }
   .sec-5 .row {
     flex-direction: column !important;
   }
