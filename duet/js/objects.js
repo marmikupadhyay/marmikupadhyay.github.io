@@ -1,4 +1,4 @@
-import collisionDetection from "/js/collision.js";
+import collisionDetection from "js/collision.js";
 
 export default class Object {
   constructor(width, height, xcor, ycor) {
