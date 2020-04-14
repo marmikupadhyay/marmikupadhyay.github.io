@@ -1,7 +1,7 @@
-import Duet from "/js/duet.js";
-import InputHandler from "/js/input.js";
-import Object from "/js/objects.js";
-import { level1, level2 } from "/js/level.js";
+import Duet from "js/duet.js";
+import InputHandler from "js/input.js";
+import Object from "js/objects.js";
+import { level1, level2 } from "js/level.js";
 
 const GAMESTATE = {
   paused: 0,
