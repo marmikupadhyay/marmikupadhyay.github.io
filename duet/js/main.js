@@ -1,4 +1,4 @@
-import Game from "js/game.js";
+import Game from "/duet/js/game.js";
 console.log(1);
 var canvas = document.getElementById("game-screen");
 var ctx = canvas.getContext("2d");
