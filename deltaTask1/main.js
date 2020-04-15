@@ -39,7 +39,7 @@ function putScores() {
 var box = document.getElementById("box");
 var c = 0;
 var f = 0;
-var lvlcount = 20;
+var lvlcount = 40;
 box.innerHTML = "<h1 class='start'>Click To Start</h1>";
 box.addEventListener("click", start);
 
