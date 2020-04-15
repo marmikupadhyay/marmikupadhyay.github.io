@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="/hacker/main.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap"
       rel="stylesheet"
@@ -11,18 +11,30 @@
     <title>Speed Tester</title>
   </head>
   <body>
+    <audio id="tap" src="tap.mp3"></audio>
+    <audio id="start" src="321-go.mp3"></audio>
+    <audio id="finish" src="finish.mp3"></audio>
+
     <section class="sec-1 row">
       <div class="col-3" id="left">
         <div class="wrap">
           <div class="nav">
             <h1>Select Mode</h1>
             <ul>
+              <li class="nav-item"><a href="/index.html"> Normal</a></li>
               <li class="nav-item">
-                <a href="/index.html" class="active"> Normal</a>
+                <a href="/hacker/index.html" class="active">Hacker</a>
               </li>
-              <li class="nav-item"><a href="/hacker/index.html">Hacker</a></li>
               <li class="nav-item"><a href="">Hacker++</a></li>
             </ul>
+            <h2>Select Difficulty</h2>
+            <select name="" id="diff">
+              <option value="1">Easy</option>
+              <option value="2" selected>Normal</option>
+              <option value="3">Intermediate</option>
+              <option value="4">Hard</option>
+              <option value="5">Extreme</option>
+            </select>
           </div>
         </div>
       </div>
@@ -39,12 +51,11 @@
         <div class="wrap">
           <div class="score-box">
             <h1>High Scores</h1>
-            <ul class="scores"></ul>
-            <button class="reset">Reset</button>
           </div>
+          <button class="reset">Reset</button>
         </div>
       </div>
     </section>
-    <script src="main.js"></script>
+    <script src="/hacker/main.js"></script>
   </body>
 </html>
