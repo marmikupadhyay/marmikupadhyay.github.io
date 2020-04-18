@@ -2,6 +2,10 @@ var scores = [];
 putScores();
 var items = [];
 var position = [];
+
+var tileColor;
+var tileTxtColor;
+
 //Sounds
 var tapSound = document.getElementById("tap");
 var startSound = document.getElementById("start");
@@ -71,6 +75,8 @@ var startTime;
 function start() {
   c = 0;
   f = 0;
+  tileColor = document.getElementById("bgcolor").value;
+  tileTxtColor = document.getElementById("txtcolor").value;
   document.querySelector(".col-6").lastElementChild.className += " remove";
   items = [];
   for (var i = 1; i < 21; i++) {
@@ -158,6 +164,17 @@ function shuffle(arra1) {
 }
 var boxPosition = document.getElementById("box").getBoundingClientRect();
 var wall = boxPosition.x;
+
+function convertHex(hex) {
+  hex = hex.replace("#", "");
+  r = parseInt(hex.substring(0, 2), 16);
+  g = parseInt(hex.substring(2, 4), 16);
+  b = parseInt(hex.substring(4, 6), 16);
+
+  result = "rgba(" + r + "," + g + "," + b;
+  return result;
+}
+
 //Main Drawing & Updating Function
 function draw() {
   var row = [];
@@ -173,9 +190,11 @@ function draw() {
     for (var l = 0; l < 5; l++) {
       var item = document.createElement("div");
 
-      item.style.background = `rgba(127,25,255,${
+      item.style.background = `${convertHex(tileColor)},${
         (1 / lvlcount) * items[5 * j + l]
       })`;
+
+      item.style.color = `${tileTxtColor}`;
 
       if (items[5 * j + l] > lvlcount) {
         item.className = "item hide";
@@ -194,9 +213,10 @@ function draw() {
     for (var l = 0; l < 5; l++) {
       var item = document.createElement("div");
 
-      item.style.background = `rgba(127,25,255,${
+      item.style.background = `${convertHex(tileColor)},${
         (1 / lvlcount) * items[5 * j + l]
       })`;
+      item.style.color = `${tileTxtColor}`;
 
       if (items[5 * j + l] > lvlcount) {
         item.className = "item hide";
@@ -240,10 +260,10 @@ function draw() {
             } else {
               itemsTBC[0].children[0].innerHTML = temp;
               itemsTBC[1].children[0].innerHTML = temp;
-              itemsTBC[0].style.background = `rgba(127,25,255,${
+              itemsTBC[0].style.background = `${convertHex(tileColor)},${
                 (1 / lvlcount) * temp
               })`;
-              itemsTBC[1].style.background = `rgba(127,25,255,${
+              itemsTBC[1].style.background = `${convertHex(tileColor)},${
                 (1 / lvlcount) * temp
               })`;
             }
@@ -273,10 +293,10 @@ function draw() {
           } else {
             itemsTBC[0].children[0].innerHTML = temp;
             itemsTBC[1].children[0].innerHTML = temp;
-            itemsTBC[0].style.background = `rgba(127,25,255,${
+            itemsTBC[0].style.background = `${convertHex(tileColor)},${
               (1 / lvlcount) * temp
             })`;
-            itemsTBC[1].style.background = `rgba(127,25,255,${
+            itemsTBC[1].style.background = `${convertHex(tileColor)},${
               (1 / lvlcount) * temp
             })`;
           }
