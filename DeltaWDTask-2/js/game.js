@@ -41,7 +41,7 @@ export default class Game {
         x: this.gameWidth / 2,
         y:
           this.obstacles[this.obstacles.length - 1].position.y -
-          getRndInt(250, 450),
+          getRndInt(350, 550),
         angle:
           (this.obstacles[this.obstacles.length - 1].startAngle + 180) % 360
       };
@@ -103,7 +103,7 @@ export default class Game {
         x: this.gameWidth / 2,
         y:
           this.obstacles[this.obstacles.length - 1].position.y -
-          getRndInt(250, 450),
+          getRndInt(350, 550),
         angle:
           (this.obstacles[this.obstacles.length - 1].startAngle + 180) % 360
       };
