@@ -11,6 +11,8 @@ const GAMESTATE = {
   gamecomplete: 5
 };
 
+var COLORS = ["#0000ff", "#ff0000", "#008000", "#ffff00"];
+
 export default class Game {
   constructor(gameWidth, gameHeight) {
     this.gameHeight = gameHeight;
@@ -18,6 +20,8 @@ export default class Game {
     this.gameState = GAMESTATE.menu;
     this.ball = new Ball(this);
     this.score = 0;
+    this.dataX;
+    this.dataY;
     this.jumpSound = document.getElementById("jump");
     this.bgSound = document.getElementById("bgMusic");
     this.deadSound = document.getElementById("dead");
@@ -81,6 +85,8 @@ export default class Game {
   }
 
   update() {
+    var index = COLORS.indexOf(this.ball.color);
+    if (index !== -1) COLORS.splice(index, 1);
     if (
       this.gameState == GAMESTATE.paused ||
       this.gameState === GAMESTATE.menu ||
@@ -89,14 +95,9 @@ export default class Game {
     )
       return;
     this.ball.update(this);
-    if (this.lives < 0) {
-      this.gameState = GAMESTATE.gameover;
-    }
-    if (this.counter % 6000 == 0) {
+    if (this.counter % 60 == 0) {
       this.counter = 0;
-      console.log("what");
     }
-
     if (this.obstacles.length < 10) {
       var params = {
         x: this.gameWidth / 2,
@@ -108,34 +109,34 @@ export default class Game {
       };
       this.obstacles.push(new Obstacle(this, params));
     }
-
     this.counter++;
     this.obstacles.forEach((obstacle, i) => {
       obstacle.update(this);
       if (obstacle.markedForDeletion == true) {
         this.obstacles.splice(i, 1);
-        console.log(this.obstacles.length);
       }
     });
-    console.log(this.obstacles.length);
+    if (this.lives <= 0) {
+      this.gameState = 3;
+      this.deadSound.play();
+      this.bgSound.removeEventListener("ended", {});
+      this.bgSound.pause();
+      this.updateScores();
+    }
     if (this.ball.position.y > this.gameHeight) {
       this.lives--;
       this.ball.speed.y = 0;
       this.ball.gravity = 0;
-      if (this.lives <= 0) {
-        this.gameState = 3;
-        this.deadSound.play();
-        this.bgSound.removeEventListener("ended", {});
-        this.bgSound.pause();
-        this.updateScores();
-      }
     }
   }
   draw(ctx) {
+    ctx.fillStyle = "#343a40";
+    ctx.fillRect(0, 0, this.gameWidth, this.gameHeight);
     this.obstacles.forEach(obstacle => {
       obstacle.draw(ctx);
     });
     this.ball.draw(ctx);
+
     ctx.font = "30px Arial";
     ctx.fillText(`Score : ${this.score}`, 0, 30);
     if (this.gameState === GAMESTATE.gameover) {
@@ -165,6 +166,33 @@ export default class Game {
       ctx.textAlign = "center";
       ctx.fillText("Paused", this.gameWidth / 2, this.gameHeight / 2);
     }
+
+    this.dataX = ctx.getImageData(
+      this.ball.position.x,
+      this.ball.position.y - this.ball.radius - 1,
+      1,
+      1
+    );
+
+    this.dataY = ctx.getImageData(
+      this.ball.position.x,
+      this.ball.position.y + this.ball.radius + 1,
+      1,
+      1
+    );
+    var x = rgbToHex(
+      this.dataX.data[0],
+      this.dataX.data[1],
+      this.dataX.data[2]
+    );
+    var y = rgbToHex(
+      this.dataY.data[0],
+      this.dataY.data[1],
+      this.dataY.data[2]
+    );
+    if (COLORS.indexOf(x) != -1 || COLORS.indexOf(y) != -1) {
+      this.lives--;
+    }
   }
 
   togglePause() {
@@ -182,9 +210,7 @@ export default class Game {
     scores.sort(function (a, b) {
       return a - b;
     });
-    console.log(scores);
     var l = scores.length > 5 ? 5 : scores.length;
-    console.log(l);
     for (var i = scores.length - 1; i >= scores.length - l; i--) {
       var item = document.createElement("li");
       item.className = "score-item";
@@ -212,4 +238,12 @@ export default class Game {
 
 function getRndInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }

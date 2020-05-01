@@ -17,7 +17,7 @@ export default class Obstacle {
     };
     this.gravity = -9.8;
     this.startAngle = params.angle;
-    this.colors = ["red", "blue", "green", "gold"];
+    this.colors = ["red", "blue", "green", "#ffff00"];
     this.angularSpeed = 2;
     this.markedForDeletion = false;
   }
@@ -51,6 +51,7 @@ export default class Obstacle {
       true
     );
     ctx.fillStyle = "#343a40";
+    ctx.strokeStyle = "#343a40";
     ctx.fill();
   }
   update(game) {

@@ -4,7 +4,8 @@ export default class Ball {
     this.gameWidth = game.gameWidth;
     this.radius = 10;
     this.gravity = 9.8;
-    this.color = "red";
+    this.color = "#ff0000";
+    this.game = game;
     this.position = {
       x: this.gameWidth / 2,
       y: this.gameHeight - 100
@@ -22,6 +23,7 @@ export default class Ball {
     ctx.beginPath();
     ctx.fillStyle = this.color;
     ctx.arc(this.position.x, this.position.y, this.radius, 0, 2 * Math.PI);
+    ctx.fillStyle = this.color;
     ctx.fill();
   }
   update(game) {
