@@ -1,6 +1,6 @@
-import Ball from "/js/ball.js";
-import Input from "/js/input.js";
-import Obstacle from "/js/obstacle.js";
+import Ball from "../js/ball.js";
+import Input from "../js/input.js";
+import Obstacle from "../js/obstacle.js";
 
 const GAMESTATE = {
   paused: 0,
