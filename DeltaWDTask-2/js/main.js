@@ -1,4 +1,4 @@
-import Game from "/js/game.js";
+import Game from "../js/game.js";
 
 if (window.innerWidth > 600) {
   var GAME_WIDTH = window.innerWidth / 3;
