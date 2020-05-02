@@ -180,9 +180,6 @@ export default class Game {
     ctx.fillText(`Current Score : ${this.score}`, 10, 40);
     ctx.fillText(`High Score : ${highScore}`, 10, 70);
 
-    if (this.gameState === this.gameHeight.info) {
-    }
-
     if (this.gameState === GAMESTATE.gameover) {
       ctx.rect(0, 0, this.gameWidth, this.gameHeight);
       ctx.fillStyle = "rgba(0, 0, 0, 0.5)";

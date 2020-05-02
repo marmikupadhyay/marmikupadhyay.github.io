@@ -4,6 +4,7 @@ export default class Obstacle {
     this.gameHeight = game.gameHeight;
     this.radius = 90;
     this.thick = 20;
+    this.game = game;
     this.indices = new Array();
     this.passed = false;
     this.type = params.type;
@@ -52,7 +53,7 @@ export default class Obstacle {
     ];
     this.gravity = -9.8;
     this.startAngle = params.angle;
-    this.colors = ["red", "blue", "green", "#ffff00"];
+    this.colors = ["#ff0000", "#0000ff", "#008000", "#ffff00"];
     shuffleArray(this.colors);
     this.angularSpeed = (1 - this.direction * 2) * 2;
     this.markedForDeletion = false;
@@ -73,9 +74,17 @@ export default class Obstacle {
           endAngle
         );
         ctx.closePath();
-        ctx.fillStyle = this.colors[i];
+        if (i == 0) {
+          ctx.fillStyle = this.game.ball.color;
+          ctx.strokeStyle = this.game.ball.color;
+        } else {
+          while (this.colors[i] == this.game.ball.color) {
+            shuffleArray(this.colors);
+          }
+          ctx.fillStyle = this.colors[i];
+          ctx.strokeStyle = this.colors[i];
+        }
         ctx.fill();
-        ctx.strokeStyle = this.colors[i];
         ctx.stroke();
       }
       ctx.beginPath();
