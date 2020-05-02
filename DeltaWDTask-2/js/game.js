@@ -21,13 +21,11 @@ export default class Game {
     this.gameHeight = gameHeight;
     this.gameWidth = gameWidth;
     this.gameState = GAMESTATE.menu;
-    this.ball = new Ball(this);
-    this.collectibles = [];
     this.score = 0;
     this.immune = false;
     this.dataX;
     this.dataY;
-
+    new Input(this);
     this.pauseBTn = document.getElementById("pause");
     this.jumpSound = document.getElementById("jump");
     this.bgSound = document.getElementById("bgMusic");
@@ -36,26 +34,6 @@ export default class Game {
     this.bgSound.addEventListener("ended", e => {
       this.play();
     });
-    this.obstacles = [];
-    var params = {
-      x: this.gameWidth / 2,
-      y: 300,
-      angle: 10,
-      type: getRndInt(1, 2)
-    };
-    this.obstacles.push(new Obstacle(this, params));
-    for (var i = 0; i < 10; i++) {
-      var params = {
-        x: this.gameWidth / 2,
-        y:
-          this.obstacles[this.obstacles.length - 1].position.y -
-          getRndInt(350, 550),
-        angle:
-          (this.obstacles[this.obstacles.length - 1].startAngle + 180) % 360,
-        type: getRndInt(1, 2)
-      };
-      this.obstacles.push(new Obstacle(this, params));
-    }
 
     this.lives = 1;
     this.gameState = 2;
@@ -64,10 +42,7 @@ export default class Game {
     this.ops = 400;
     document.getElementById("play").addEventListener("click", e => {
       e.target.parentElement.parentElement.className += " hide";
-      this.gameState = 1;
-      new Input(this);
-      this.bgSound.play();
-      this.pauseBTn.classList.remove("hide");
+      this.start();
     });
     document.getElementById("scores").addEventListener("click", e => {
       e.target.parentElement.parentElement.nextElementSibling.classList.remove(
@@ -96,6 +71,34 @@ export default class Game {
       this.gameState != GAMESTATE.newlevel
     )
       return;
+    this.ball = new Ball(this);
+    this.collectibles = [];
+    this.obstacles = [];
+    var params = {
+      x: this.gameWidth / 2,
+      y: 300,
+      angle: 10,
+      type: getRndInt(1, 2)
+    };
+    this.obstacles.push(new Obstacle(this, params));
+    for (var i = 0; i < 10; i++) {
+      var params = {
+        x: this.gameWidth / 2,
+        y:
+          this.obstacles[this.obstacles.length - 1].position.y -
+          getRndInt(350, 550),
+        angle:
+          (this.obstacles[this.obstacles.length - 1].startAngle + 180) % 360,
+        type: getRndInt(1, 2)
+      };
+      this.obstacles.push(new Obstacle(this, params));
+    }
+    this.lives = 1;
+    this.gameState = 1;
+    this.ops = 400;
+    this.bgSound.play();
+    this.pauseBTn.classList.remove("hide");
+    this.score = 0;
     this.gameState = GAMESTATE.running;
   }
 
@@ -156,6 +159,9 @@ export default class Game {
     }
   }
   draw(ctx) {
+    if (this.gameState == GAMESTATE.menu) {
+      return;
+    }
     ctx.fillStyle = "#343a40";
     ctx.fillRect(0, 0, this.gameWidth, this.gameHeight);
     this.obstacles.forEach(obstacle => {
@@ -188,6 +194,11 @@ export default class Game {
       ctx.fillStyle = "white";
       ctx.textAlign = "center";
       ctx.fillText("GameOver", this.gameWidth / 2, this.gameHeight / 2);
+      ctx.fillText(
+        "Double Tap to Replay",
+        this.gameWidth / 2,
+        this.gameHeight / 2 + 50
+      );
     }
     if (this.gameState === GAMESTATE.gamecomplete) {
       ctx.rect(0, 0, this.gameWidth, this.gameHeight);

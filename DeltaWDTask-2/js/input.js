@@ -30,6 +30,15 @@ export default class InputHandler {
       }
     });
 
+    document.addEventListener("dblclick", e => {
+      if (game.gameState == 3) {
+        game.gameState = 1;
+        game.start();
+        console.log(1);
+        location.reload();
+      }
+    });
+
     document.addEventListener("keyup", event => {
       switch (event.keyCode) {
       }
