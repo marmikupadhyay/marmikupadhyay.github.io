@@ -5,7 +5,6 @@
 }
 
 .wrap {
-  min-width: 100%;
   min-height: 100vh;
   position: relative;
   background: white;
@@ -76,4 +75,24 @@ small {
 
 .hide {
   display: none;
+}
+
+#pause {
+  width: 60px;
+  height: auto;
+  position: absolute;
+  top: 20px;
+  left: 60%;
+  z-index: 1;
+}
+
+@media only screen and (max-width: 450px) {
+  #pause {
+    width: 60px;
+    height: auto;
+    position: absolute;
+    top: 10px;
+    left: 80%;
+    z-index: 1;
+  }
 }

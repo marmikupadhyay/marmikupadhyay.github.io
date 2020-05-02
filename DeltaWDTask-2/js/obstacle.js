@@ -65,6 +65,7 @@ export default class Obstacle {
     if (game.ball.position.y < this.position.y - this.radius) {
       if (this.passed != true) {
         game.score++;
+        game.updateScores();
       }
       this.passed = true;
     }

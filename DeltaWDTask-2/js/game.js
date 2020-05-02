@@ -1,7 +1,9 @@
 import Ball from "../js/ball.js";
 import Input from "../js/input.js";
 import Obstacle from "../js/obstacle.js";
+import Collectible from "../js/collectibles.js";
 
+var pc = 0;
 const GAMESTATE = {
   paused: 0,
   running: 1,
@@ -19,9 +21,13 @@ export default class Game {
     this.gameWidth = gameWidth;
     this.gameState = GAMESTATE.menu;
     this.ball = new Ball(this);
+    this.collectibles = [];
     this.score = 0;
+
     this.dataX;
     this.dataY;
+
+    this.pauseBTn = document.getElementById("pause");
     this.jumpSound = document.getElementById("jump");
     this.bgSound = document.getElementById("bgMusic");
     this.deadSound = document.getElementById("dead");
@@ -51,13 +57,14 @@ export default class Game {
     this.lives = 1;
     this.gameState = 2;
 
-    this.counter = 1;
+    this.counter = 0;
     this.ops = 400;
     document.getElementById("play").addEventListener("click", e => {
       e.target.parentElement.parentElement.className += " hide";
       this.gameState = 1;
       new Input(this);
       this.bgSound.play();
+      this.pauseBTn.classList.remove("hide");
     });
     document.getElementById("scores").addEventListener("click", e => {
       e.target.parentElement.parentElement.nextElementSibling.classList.remove(
@@ -73,6 +80,11 @@ export default class Game {
       e.target.parentElement.parentElement.className += " hide";
       this.gameState = 2;
     });
+
+    this.pauseBTn.addEventListener("click", e => {
+      this.togglePause();
+    });
+
     this.putScores();
   }
   start() {
@@ -85,8 +97,6 @@ export default class Game {
   }
 
   update() {
-    var index = COLORS.indexOf(this.ball.color);
-    if (index !== -1) COLORS.splice(index, 1);
     if (
       this.gameState == GAMESTATE.paused ||
       this.gameState === GAMESTATE.menu ||
@@ -95,9 +105,15 @@ export default class Game {
     )
       return;
     this.ball.update(this);
-    if (this.counter % 60 == 0) {
-      this.counter = 0;
+    this.collectibles.forEach((collectible, index) => {
+      if (collectible.update(this)) this.collectibles.splice(index, 1);
+    });
+
+    if (this.counter % 600 == 0) {
+      var params = { type: 1, y: this.ball.position.y - getRndInt(100, 200) };
+      this.collectibles.push(new Collectible(this, params));
     }
+
     if (this.obstacles.length < 10) {
       var params = {
         x: this.gameWidth / 2,
@@ -121,7 +137,6 @@ export default class Game {
       this.deadSound.play();
       this.bgSound.removeEventListener("ended", {});
       this.bgSound.pause();
-      this.updateScores();
     }
     if (this.ball.position.y > this.gameHeight) {
       this.lives--;
@@ -137,8 +152,23 @@ export default class Game {
     });
     this.ball.draw(ctx);
 
+    this.collectibles.forEach(collectible => {
+      collectible.draw(ctx);
+    });
+
     ctx.font = "30px Arial";
-    ctx.fillText(`Score : ${this.score}`, 0, 30);
+    ctx.fillStyle = "white";
+    ctx.textAlign = "left";
+    var highScore;
+    if (localStorage.getItem("switchscores") != null) {
+      var scores = JSON.parse(localStorage.getItem("switchscores"));
+      highScore = scores[4];
+    } else {
+      highScore = 0;
+    }
+    ctx.fillText(`Current Score : ${this.score}`, 10, 40);
+    ctx.fillText(`High Score : ${highScore}`, 10, 70);
+
     if (this.gameState === GAMESTATE.gameover) {
       ctx.rect(0, 0, this.gameWidth, this.gameHeight);
       ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
@@ -190,7 +220,11 @@ export default class Game {
       this.dataY.data[1],
       this.dataY.data[2]
     );
-    if (COLORS.indexOf(x) != -1 || COLORS.indexOf(y) != -1) {
+
+    if (
+      (COLORS.indexOf(x) != -1 && x != this.ball.color) ||
+      (COLORS.indexOf(y) != -1 && y != this.ball.color)
+    ) {
       this.lives--;
     }
   }
@@ -199,6 +233,12 @@ export default class Game {
     if (this.gameState === GAMESTATE.paused) {
       this.gameState = GAMESTATE.running;
     } else this.gameState = GAMESTATE.paused;
+    if (pc % 2 == 0) {
+      this.pauseBTn.src = "imgs/play.png";
+    } else {
+      this.pauseBTn.src = "imgs/pause.png";
+    }
+    pc++;
   }
 
   putScores() {
@@ -224,15 +264,29 @@ export default class Game {
     if (localStorage.getItem("switchscores") != null) {
       scores = JSON.parse(localStorage.getItem("switchscores"));
     } else {
-      scores = [];
+      scores = [0, 0, 0, 0, 0];
     }
-    scores.push(this.score);
+    if (scores.length < 5) {
+      for (var i = 0; i < 5 - scores.length; i++) {
+        scores.push(0);
+      }
+    }
+    for (var i = 4; i >= 0; i--) {
+      if (scores[i] < this.score) {
+        var j = 0;
+        while (j < i) {
+          scores[j] = scores[j + 1];
+          j++;
+        }
+        scores[i] = this.score;
+        break;
+      }
+    }
     scores.sort(function (a, b) {
       return a - b;
     });
     scores.splice(0, scores.length - 5);
     localStorage.setItem("switchscores", JSON.stringify(scores));
-    // this.putScores();
   }
 }
 
