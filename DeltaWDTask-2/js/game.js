@@ -10,7 +10,8 @@ const GAMESTATE = {
   menu: 2,
   gameover: 3,
   newlevel: 4,
-  gamecomplete: 5
+  gamecomplete: 5,
+  info: 6
 };
 
 var COLORS = ["#0000ff", "#ff0000", "#008000", "#ffff00"];
@@ -23,7 +24,7 @@ export default class Game {
     this.ball = new Ball(this);
     this.collectibles = [];
     this.score = 0;
-
+    this.immune = false;
     this.dataX;
     this.dataY;
 
@@ -39,7 +40,8 @@ export default class Game {
     var params = {
       x: this.gameWidth / 2,
       y: 300,
-      angle: 10
+      angle: 10,
+      type: getRndInt(1, 2)
     };
     this.obstacles.push(new Obstacle(this, params));
     for (var i = 0; i < 10; i++) {
@@ -49,7 +51,8 @@ export default class Game {
           this.obstacles[this.obstacles.length - 1].position.y -
           getRndInt(350, 550),
         angle:
-          (this.obstacles[this.obstacles.length - 1].startAngle + 180) % 360
+          (this.obstacles[this.obstacles.length - 1].startAngle + 180) % 360,
+        type: getRndInt(1, 2)
       };
       this.obstacles.push(new Obstacle(this, params));
     }
@@ -97,20 +100,24 @@ export default class Game {
   }
 
   update() {
-    if (
-      this.gameState == GAMESTATE.paused ||
-      this.gameState === GAMESTATE.menu ||
-      this.gameState === GAMESTATE.gameover ||
-      this.gameState === GAMESTATE.gamecomplete
-    )
-      return;
+    if (this.gameState != GAMESTATE.running) return;
     this.ball.update(this);
     this.collectibles.forEach((collectible, index) => {
       if (collectible.update(this)) this.collectibles.splice(index, 1);
     });
 
-    if (this.counter % 600 == 0) {
-      var params = { type: 1, y: this.ball.position.y - getRndInt(100, 200) };
+    if (this.counter % 800 == 0) {
+      var params = {
+        type: getRndInt(3, 5),
+        y: this.ball.position.y - getRndInt(100, 200)
+      };
+      this.collectibles.push(new Collectible(this, params));
+    } else if (this.counter % 400 == 0) {
+      var params = {
+        type: 1,
+        y: this.ball.position.y - getRndInt(100, 200),
+        type: 1
+      };
       this.obstacles.forEach(obstacle => {
         obstacle.angularSpeed += (1 - obstacle.direction * 2) * 0.5;
       });
@@ -124,7 +131,8 @@ export default class Game {
           this.obstacles[this.obstacles.length - 1].position.y -
           getRndInt(350, 550),
         angle:
-          (this.obstacles[this.obstacles.length - 1].startAngle + 180) % 360
+          (this.obstacles[this.obstacles.length - 1].startAngle + 180) % 360,
+        type: getRndInt(1, 2)
       };
       this.obstacles.push(new Obstacle(this, params));
     }
@@ -171,6 +179,9 @@ export default class Game {
     }
     ctx.fillText(`Current Score : ${this.score}`, 10, 40);
     ctx.fillText(`High Score : ${highScore}`, 10, 70);
+
+    if (this.gameState === this.gameHeight.info) {
+    }
 
     if (this.gameState === GAMESTATE.gameover) {
       ctx.rect(0, 0, this.gameWidth, this.gameHeight);
@@ -223,12 +234,13 @@ export default class Game {
       this.dataY.data[1],
       this.dataY.data[2]
     );
-
-    if (
-      (COLORS.indexOf(x) != -1 && x != this.ball.color) ||
-      (COLORS.indexOf(y) != -1 && y != this.ball.color)
-    ) {
-      this.lives--;
+    if (this.immune == false) {
+      if (
+        (COLORS.indexOf(x) != -1 && x != this.ball.color) ||
+        (COLORS.indexOf(y) != -1 && y != this.ball.color)
+      ) {
+        this.lives--;
+      }
     }
   }
 

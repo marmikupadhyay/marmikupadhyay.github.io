@@ -6,6 +6,15 @@ export default class Collectible {
     this.gameHeight = game.gameHeight;
     this.color = COLORS[getRndInt(0, 3)];
     this.radius = 10;
+    this.number = 4;
+    this.width = 50;
+    this.height = 60;
+    this.imageX = 3;
+    this.imageY = 10;
+    this.frame;
+    this.framerate;
+    this.powerups = document.getElementById("powerups");
+    this.startAngle = 0;
     this.position = {
       x: this.gameWidth / 2,
       y: params.y
@@ -25,6 +34,70 @@ export default class Collectible {
       ctx.fillStyle = this.color;
       ctx.fill();
     }
+    if (this.type == 3) {
+      this.imageX = 3 + 90 * 2;
+
+      // ctx.fillRect(
+      //   this.position.x - this.width / 2,
+      //   this.position.y - this.height / 2,
+      //   this.width,
+      //   this.height
+      // );
+      ctx.drawImage(
+        this.powerups,
+        this.imageX,
+        this.imageY,
+        73,
+        80,
+        this.position.x - this.width / 2,
+        this.position.y - this.height / 2,
+        this.width,
+        this.height
+      );
+    }
+    if (this.type == 4) {
+      this.imageX = 3 + 90 * 0;
+      this.imageY = 10 + 80 * 1;
+
+      // ctx.fillRect(
+      //   this.position.x - this.width / 2,
+      //   this.position.y - this.height / 2,
+      //   this.width,
+      //   this.height
+      // );
+      ctx.drawImage(
+        this.powerups,
+        this.imageX,
+        this.imageY,
+        73,
+        80,
+        this.position.x - this.width / 2,
+        this.position.y - this.height / 2,
+        this.width,
+        this.height
+      );
+    }
+    if (this.type == 5) {
+      this.imageX = 3 + 90 * 3;
+      this.imageY = 12 + 80 * 1;
+      // ctx.fillRect(
+      //   this.position.x - this.width / 2,
+      //   this.position.y - this.height / 2,
+      //   this.width,
+      //   this.height
+      // );
+      ctx.drawImage(
+        this.powerups,
+        this.imageX,
+        this.imageY,
+        73,
+        80,
+        this.position.x - this.width / 2,
+        this.position.y - this.height / 2,
+        this.width,
+        this.height
+      );
+    }
   }
   update(game) {
     this.speed.y += this.gravity / 100;
@@ -37,8 +110,38 @@ export default class Collectible {
         this.radius + game.ball.radius + 1
       ) {
         game.ball.color = this.color;
+        game.immune = false;
+        game.ball.jumpHeight = 2.5;
         return 1;
-        console.log(1);
+      }
+    }
+    if (this.type == 3) {
+      if (
+        Math.abs(game.ball.position.y - this.position.y) <
+        this.height / 2 + game.ball.radius + 1
+      ) {
+        game.immune = true;
+        return 1;
+      }
+    }
+    if (this.type == 4) {
+      if (
+        Math.abs(game.ball.position.y - this.position.y) <
+        this.height / 2 + game.ball.radius + 1
+      ) {
+        game.ball.jumpHeight = 4;
+        return 1;
+      }
+    }
+    if (this.type == 5) {
+      if (
+        Math.abs(game.ball.position.y - this.position.y) <
+        this.height / 2 + game.ball.radius + 1
+      ) {
+        game.obstacles.forEach(obstacle => {
+          obstacle.angularSpeed /= 2;
+        });
+        return 1;
       }
     }
     return 0;

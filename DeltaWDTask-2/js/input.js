@@ -3,7 +3,7 @@ export default class InputHandler {
     document.addEventListener("keypress", event => {
       switch (event.keyCode) {
         case 32:
-          game.ball.speed.y = -2.5;
+          game.ball.speed.y = -game.ball.jumpHeight;
           game.jumpSound.play();
           if (game.ball.position.y < game.ball.gameHeight / 2) {
             game.obstacles.forEach(obstacle => {
@@ -18,7 +18,7 @@ export default class InputHandler {
     });
 
     document.addEventListener("click", event => {
-      game.ball.speed.y = -2.5;
+      game.ball.speed.y = -game.ball.jumpHeight;
       game.jumpSound.play();
       if (game.ball.position.y < game.ball.gameHeight / 2) {
         game.obstacles.forEach(obstacle => {
