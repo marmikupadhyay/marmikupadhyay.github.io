@@ -6,6 +6,7 @@ export default class Obstacle {
     this.thick = 20;
     this.indices = new Array();
     this.passed = false;
+    this.direction = getRndInt(0, 1);
     this.position = {
       x: params.x,
       y: params.y
@@ -18,7 +19,7 @@ export default class Obstacle {
     this.gravity = -9.8;
     this.startAngle = params.angle;
     this.colors = ["red", "blue", "green", "#ffff00"];
-    this.angularSpeed = 2;
+    this.angularSpeed = (1 - this.direction * 2) * 2;
     this.markedForDeletion = false;
   }
 
@@ -70,4 +71,7 @@ export default class Obstacle {
       this.passed = true;
     }
   }
+}
+function getRndInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }

@@ -111,6 +111,9 @@ export default class Game {
 
     if (this.counter % 600 == 0) {
       var params = { type: 1, y: this.ball.position.y - getRndInt(100, 200) };
+      this.obstacles.forEach(obstacle => {
+        obstacle.angularSpeed += (1 - obstacle.direction * 2) * 0.5;
+      });
       this.collectibles.push(new Collectible(this, params));
     }
 
