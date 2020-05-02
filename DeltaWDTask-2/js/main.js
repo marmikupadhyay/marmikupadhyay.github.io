@@ -4,8 +4,8 @@ if (window.innerWidth > 600) {
   var GAME_WIDTH = window.innerWidth / 3;
   var GAME_HEIGHT = 700;
 } else {
-  var GAME_WIDTH = window.innerWidth;
-  var GAME_HEIGHT = window.innerHeight;
+  var GAME_WIDTH = window.screen.availWidth;
+  var GAME_HEIGHT = window.screen.availHeight;
 }
 var canvas = document.getElementById("game-screen");
 canvas.width = GAME_WIDTH;
