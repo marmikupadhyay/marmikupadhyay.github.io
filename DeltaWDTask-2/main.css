@@ -5,9 +5,10 @@
 }
 
 .wrap {
-  min-height: 100vh;
+  min-height: 100%;
   position: relative;
   background: white;
+  overflow: hidden;
 }
 #game-screen {
   position: absolute;
