@@ -25,6 +25,7 @@ export default class Game {
     this.immune = false;
     this.dataX;
     this.dataY;
+    this.ball = new Ball(this);
     new Input(this);
     this.pauseBTn = document.getElementById("pause");
     this.jumpSound = document.getElementById("jump");
@@ -51,12 +52,25 @@ export default class Game {
       e.target.parentElement.parentElement.className += " hide";
       this.gameState = 2;
     });
-    document.getElementById("back").addEventListener("click", e => {
-      e.target.parentElement.parentElement.previousElementSibling.classList.remove(
-        "hide"
-      );
-      e.target.parentElement.parentElement.className += " hide";
-      this.gameState = 2;
+    var backs = document.querySelectorAll(".back");
+    backs.forEach(back => {
+      back.addEventListener("click", e => {
+        if (!document.getElementById("gameinfo").classList.contains("hide")) {
+          document.getElementById("gameinfo").className += " hide";
+        } else {
+          e.target.parentElement.parentElement.previousElementSibling.classList.remove(
+            "hide"
+          );
+          e.target.parentElement.parentElement.className += " hide";
+          this.gameState = 2;
+        }
+      });
+    });
+
+    document.getElementById("info").addEventListener("click", e => {
+      if (document.getElementById("gameinfo").classList.contains("hide")) {
+        document.getElementById("gameinfo").classList.remove("hide");
+      }
     });
 
     this.pauseBTn.addEventListener("click", e => {
@@ -71,7 +85,6 @@ export default class Game {
       this.gameState != GAMESTATE.newlevel
     )
       return;
-    this.ball = new Ball(this);
     this.collectibles = [];
     this.obstacles = [];
     var params = {
