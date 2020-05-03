@@ -31,6 +31,7 @@ export default class Game {
     this.jumpSound = document.getElementById("jump");
     this.bgSound = document.getElementById("bgMusic");
     this.deadSound = document.getElementById("dead");
+    this.collectSound = document.getElementById("collect");
 
     this.bgSound.addEventListener("ended", e => {
       this.play();
@@ -105,6 +106,19 @@ export default class Game {
         type: getRndInt(1, 2)
       };
       this.obstacles.push(new Obstacle(this, params));
+      if (i % 2 != 0) {
+        var params2 = {
+          type: getRndInt(2, 4),
+          y: this.obstacles[i].position.y + getRndInt(200, 300)
+        };
+        this.collectibles.push(new Collectible(this, params2));
+      } else {
+        var params2 = {
+          type: 1,
+          y: this.obstacles[i].position.y + getRndInt(200, 300)
+        };
+        this.collectibles.push(new Collectible(this, params2));
+      }
     }
     this.lives = 1;
     this.gameState = 1;
@@ -119,25 +133,16 @@ export default class Game {
     if (this.gameState != GAMESTATE.running) return;
     this.ball.update(this);
     this.collectibles.forEach((collectible, index) => {
-      if (collectible.update(this)) this.collectibles.splice(index, 1);
+      if (collectible.update(this)) {
+        this.collectibles.splice(index, 1);
+        this.collectSound.play();
+      }
     });
 
-    if (this.counter % 800 == 0) {
-      var params = {
-        type: getRndInt(3, 5),
-        y: this.ball.position.y - getRndInt(100, 200)
-      };
-      this.collectibles.push(new Collectible(this, params));
-    } else if (this.counter % 400 == 0) {
-      var params = {
-        type: 1,
-        y: this.ball.position.y - getRndInt(100, 200),
-        type: 1
-      };
+    if (this.counter % 400 == 0) {
       this.obstacles.forEach(obstacle => {
         obstacle.angularSpeed += (1 - obstacle.direction * 2) * 0.5;
       });
-      this.collectibles.push(new Collectible(this, params));
     }
 
     if (this.obstacles.length < 10) {
@@ -151,6 +156,23 @@ export default class Game {
         type: getRndInt(1, 2)
       };
       this.obstacles.push(new Obstacle(this, params));
+      if (this.counter % 2 == 0) {
+        var params2 = {
+          type: getRndInt(2, 4),
+          y:
+            this.obstacles[this.obstacles.length - 1].position.y +
+            getRndInt(200, 300)
+        };
+        this.collectibles.push(new Collectible(this, params2));
+      } else {
+        var params2 = {
+          type: 1,
+          y:
+            this.obstacles[this.obstacles.length - 1].position.y +
+            getRndInt(200, 300)
+        };
+        this.collectibles.push(new Collectible(this, params2));
+      }
     }
     this.counter++;
     this.obstacles.forEach((obstacle, i) => {

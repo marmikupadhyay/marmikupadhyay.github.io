@@ -34,7 +34,7 @@ export default class Collectible {
       ctx.fillStyle = this.color;
       ctx.fill();
     }
-    if (this.type == 3) {
+    if (this.type == 2) {
       this.imageX = 3 + 90 * 2;
 
       // ctx.fillRect(
@@ -55,7 +55,7 @@ export default class Collectible {
         this.height
       );
     }
-    if (this.type == 4) {
+    if (this.type == 3) {
       this.imageX = 3 + 90 * 0;
       this.imageY = 10 + 80 * 1;
 
@@ -77,7 +77,7 @@ export default class Collectible {
         this.height
       );
     }
-    if (this.type == 5) {
+    if (this.type == 4) {
       this.imageX = 3 + 90 * 3;
       this.imageY = 12 + 80 * 1;
       // ctx.fillRect(
@@ -115,7 +115,7 @@ export default class Collectible {
         return 1;
       }
     }
-    if (this.type == 3) {
+    if (this.type == 2) {
       if (
         Math.abs(game.ball.position.y - this.position.y) <
         this.height / 2 + game.ball.radius + 1
@@ -124,7 +124,7 @@ export default class Collectible {
         return 1;
       }
     }
-    if (this.type == 4) {
+    if (this.type == 3) {
       if (
         Math.abs(game.ball.position.y - this.position.y) <
         this.height / 2 + game.ball.radius + 1
@@ -133,7 +133,7 @@ export default class Collectible {
         return 1;
       }
     }
-    if (this.type == 5) {
+    if (this.type == 4) {
       if (
         Math.abs(game.ball.position.y - this.position.y) <
         this.height / 2 + game.ball.radius + 1
