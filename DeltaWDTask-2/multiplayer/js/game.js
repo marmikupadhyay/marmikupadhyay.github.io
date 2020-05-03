@@ -382,6 +382,7 @@ export default class Game {
     });
     this.area.addEventListener("touchstart", event => {
       event.preventDefault();
+      console.log(event.touches);
       this.ball.speed.y = -this.ball.jumpHeight;
       this.jumpSound.play();
       if (this.ball.position.y < this.ball.gameHeight / 2) {
