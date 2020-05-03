@@ -1,11 +1,21 @@
 import Game from "../js/game.js";
 
-if (window.innerWidth > 600) {
-  var GAME_WIDTH = window.innerWidth / 3;
+var w =
+  window.innerWidth ||
+  document.documentElement.clientWidth ||
+  document.body.clientWidth;
+
+var h =
+  window.innerHeight ||
+  document.documentElement.clientHeight ||
+  document.body.clientHeight;
+
+if (w > 600) {
+  var GAME_WIDTH = w / 3;
   var GAME_HEIGHT = 700;
 } else {
-  var GAME_WIDTH = window.innerWidth;
-  var GAME_HEIGHT = window.innerHeight;
+  var GAME_WIDTH = w;
+  var GAME_HEIGHT = h;
 }
 var canvas = document.getElementById("game-screen");
 canvas.width = GAME_WIDTH;

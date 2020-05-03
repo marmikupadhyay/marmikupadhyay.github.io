@@ -11,6 +11,7 @@ export default class Collectible {
     this.height = 60;
     this.imageX = 3;
     this.imageY = 10;
+    console.log(params);
     this.frame;
     this.framerate;
     this.powerups = document.getElementById("powerups");

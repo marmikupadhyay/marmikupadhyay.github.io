@@ -95,6 +95,11 @@ export default class Game {
       type: getRndInt(1, 2)
     };
     this.obstacles.push(new Obstacle(this, params));
+    var params2 = {
+      type: 1,
+      y: this.obstacles[0].position.y + getRndInt(200, 250)
+    };
+    this.collectibles.push(new Collectible(this, params2));
     for (var i = 0; i < 10; i++) {
       var params = {
         x: this.gameWidth / 2,
@@ -106,16 +111,16 @@ export default class Game {
         type: getRndInt(1, 2)
       };
       this.obstacles.push(new Obstacle(this, params));
-      if (i % 2 != 0) {
+      if (i % 2 == 0) {
         var params2 = {
           type: getRndInt(2, 4),
-          y: this.obstacles[i].position.y + getRndInt(200, 300)
+          y: this.obstacles[i + 1].position.y + getRndInt(200, 250)
         };
         this.collectibles.push(new Collectible(this, params2));
       } else {
         var params2 = {
           type: 1,
-          y: this.obstacles[i].position.y + getRndInt(200, 300)
+          y: this.obstacles[i + 1].position.y + getRndInt(200, 250)
         };
         this.collectibles.push(new Collectible(this, params2));
       }
@@ -161,7 +166,7 @@ export default class Game {
           type: getRndInt(2, 4),
           y:
             this.obstacles[this.obstacles.length - 1].position.y +
-            getRndInt(200, 300)
+            getRndInt(200, 250)
         };
         this.collectibles.push(new Collectible(this, params2));
       } else {
@@ -169,7 +174,7 @@ export default class Game {
           type: 1,
           y:
             this.obstacles[this.obstacles.length - 1].position.y +
-            getRndInt(200, 300)
+            getRndInt(200, 250)
         };
         this.collectibles.push(new Collectible(this, params2));
       }
