@@ -368,7 +368,7 @@ export default class Game {
         }
       });
 
-    this.area.addEventListener("click", event => {
+    this.area.addEventListener("mousedown", event => {
       this.ball.speed.y = -this.ball.jumpHeight;
       this.jumpSound.play();
       if (this.ball.position.y < this.ball.gameHeight / 2) {
