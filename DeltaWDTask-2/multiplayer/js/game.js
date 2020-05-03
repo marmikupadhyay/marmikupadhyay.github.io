@@ -380,7 +380,19 @@ export default class Game {
         });
       }
     });
-
+    this.area.addEventListener("touchstart", event => {
+      event.preventDefault();
+      this.ball.speed.y = -this.ball.jumpHeight;
+      this.jumpSound.play();
+      if (this.ball.position.y < this.ball.gameHeight / 2) {
+        this.obstacles.forEach(obstacle => {
+          obstacle.speed.y = 4;
+        });
+        this.collectibles.forEach(collectible => {
+          collectible.speed.y = 4;
+        });
+      }
+    });
     this.area.addEventListener("dblclick", e => {
       if (this.gameState == 3) {
         this.gameState = 1;
