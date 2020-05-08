@@ -1,4 +1,4 @@
-var COLORS = ["#0000ff", "#ff0000", "#008000", "#ffff00"];
+var COLORS = ["#fae100", "#900dff", "#ff0181", "#32dbf0"];
 
 export default class Collectible {
   constructor(game, params) {

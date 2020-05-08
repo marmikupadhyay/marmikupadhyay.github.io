@@ -9,7 +9,7 @@ var h =
   window.innerHeight ||
   document.documentElement.clientHeight ||
   document.body.clientHeight;
-h=window.outerHeight;
+
 if (w > 600) {
   var GAME_WIDTH = w / 3;
   var GAME_HEIGHT = h / 2;

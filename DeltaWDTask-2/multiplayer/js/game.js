@@ -213,8 +213,8 @@ export default class Game {
     ctx.fillStyle = "white";
     ctx.textAlign = "left";
     var highScore;
-    if (localStorage.getItem("switchscores") != null) {
-      var scores = JSON.parse(localStorage.getItem("switchscores"));
+    if (localStorage.getItem("switchscores2") != null) {
+      var scores = JSON.parse(localStorage.getItem("switchscores2"));
       highScore = scores[4];
     } else {
       highScore = 0;
@@ -303,8 +303,8 @@ export default class Game {
   putScores() {
     var scoreList = document.querySelector(".scores");
     var scores = [];
-    if (localStorage.getItem("switchscores") != null) {
-      scores = JSON.parse(localStorage.getItem("switchscores"));
+    if (localStorage.getItem("switchscores2") != null) {
+      scores = JSON.parse(localStorage.getItem("switchscores2"));
     }
     scores.sort(function (a, b) {
       return a - b;
@@ -320,8 +320,8 @@ export default class Game {
 
   updateScores() {
     var scores;
-    if (localStorage.getItem("switchscores") != null) {
-      scores = JSON.parse(localStorage.getItem("switchscores"));
+    if (localStorage.getItem("switchscores2") != null) {
+      scores = JSON.parse(localStorage.getItem("switchscores2"));
     } else {
       scores = [0, 0, 0, 0, 0];
     }
@@ -345,28 +345,26 @@ export default class Game {
       return a - b;
     });
     scores.splice(0, scores.length - 5);
-    localStorage.setItem("switchscores", JSON.stringify(scores));
+    localStorage.setItem("switchscores2", JSON.stringify(scores));
   }
 
   input() {
-    document
-      .getElementById("game-screen")
-      .addEventListener("keypress", event => {
-        switch (event.keyCode) {
-          case 32:
-            this.ball.speed.y = -this.ball.jumpHeight;
-            this.jumpSound.play();
-            if (this.ball.position.y < this.ball.gameHeight / 2) {
-              this.obstacles.forEach(obstacle => {
-                obstacle.speed.y = 4;
-              });
-              this.collectibles.forEach(collectible => {
-                collectible.speed.y = 4;
-              });
-            }
-            break;
-        }
-      });
+    this.area.addEventListener("keypress", event => {
+      switch (event.keyCode) {
+        case 32:
+          this.ball.speed.y = -this.ball.jumpHeight;
+          this.jumpSound.play();
+          if (this.ball.position.y < this.ball.gameHeight / 2) {
+            this.obstacles.forEach(obstacle => {
+              obstacle.speed.y = 4;
+            });
+            this.collectibles.forEach(collectible => {
+              collectible.speed.y = 4;
+            });
+          }
+          break;
+      }
+    });
 
     this.area.addEventListener("mousedown", event => {
       this.ball.speed.y = -this.ball.jumpHeight;
@@ -380,9 +378,10 @@ export default class Game {
         });
       }
     });
+
     this.area.addEventListener("touchstart", event => {
-      event.preventDefault();
       console.log(event.touches);
+      event.preventDefault();
       this.ball.speed.y = -this.ball.jumpHeight;
       this.jumpSound.play();
       if (this.ball.position.y < this.ball.gameHeight / 2) {
@@ -394,6 +393,7 @@ export default class Game {
         });
       }
     });
+
     this.area.addEventListener("dblclick", e => {
       if (this.gameState == 3) {
         this.gameState = 1;

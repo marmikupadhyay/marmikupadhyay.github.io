@@ -53,10 +53,22 @@ export default class Obstacle {
     ];
     this.gravity = -9.8;
     this.startAngle = params.angle;
-    this.colors = ["#ff0000", "#0000ff", "#008000", "#ffff00"];
+    this.startAngle2 = params.angle;
+    this.colors = ["#fae100", "#900dff", "#ff0181", "#32dbf0"];
     shuffleArray(this.colors);
     this.angularSpeed = (1 - this.direction * 2) * 2;
     this.markedForDeletion = false;
+
+    if (this.type == 4 && this.angularSpeed < 0) {
+      this.position.x = this.position.x - 50;
+    }
+    if (this.type == 4 && this.angularSpeed > 0) {
+      this.position.x = this.position.x + 50;
+    }
+    if (this.type == 3) {
+      this.radius *= 1.5;
+      this.angularSpeed /= 2;
+    }
   }
 
   draw(ctx) {
@@ -96,11 +108,11 @@ export default class Obstacle {
         Math.PI * 2,
         true
       );
-      ctx.fillStyle = "#343a40";
-      ctx.strokeStyle = "#343a40";
+      ctx.fillStyle = "#272727";
+      ctx.strokeStyle = "#272727";
       ctx.fill();
     }
-    if (this.type == 3) {
+    if (this.type == 10) {
       ctx.moveTo(this.triPos.x[2], this.triPos.y[2]);
 
       for (var i = 0; i < 3; i++) {
@@ -124,6 +136,122 @@ export default class Obstacle {
       ctx.fillStyle = this.colors[0];
       ctx.fill();
     }
+    if (this.type == 3) {
+      for (var i = 0; i < this.number; i++) {
+        this.startAngle = this.startAngle + (2 * Math.PI) / this.number;
+        var endAngle = this.startAngle + (2 * Math.PI) / this.number;
+        ctx.beginPath();
+        ctx.moveTo(this.position.x, this.position.y);
+        ctx.arc(
+          this.position.x,
+          this.position.y,
+          this.radius,
+          this.startAngle,
+          endAngle
+        );
+        ctx.closePath();
+        if (i == 0) {
+          ctx.fillStyle = this.game.ball.color;
+          ctx.strokeStyle = this.game.ball.color;
+        } else {
+          while (this.colors[i] == this.game.ball.color) {
+            shuffleArray(this.colors);
+          }
+          ctx.fillStyle = this.colors[i];
+          ctx.strokeStyle = this.colors[i];
+        }
+        ctx.fill();
+        ctx.stroke();
+      }
+      ctx.beginPath();
+      ctx.arc(
+        this.position.x,
+        this.position.y,
+        this.radius - this.thick - 1,
+        0,
+        Math.PI * 2,
+        true
+      );
+      ctx.fillStyle = "#272727";
+      ctx.strokeStyle = "#272727";
+      ctx.fill();
+      for (var i = 0; i < this.number; i++) {
+        this.startAngle2 = this.startAngle2 + (2 * Math.PI) / this.number;
+        var endAngle = this.startAngle2 + (2 * Math.PI) / this.number;
+        ctx.beginPath();
+        ctx.moveTo(this.position.x, this.position.y);
+        ctx.arc(
+          this.position.x,
+          this.position.y,
+          this.radius - 2 * this.thick - 10,
+          this.startAngle2,
+          endAngle
+        );
+        ctx.closePath();
+        if (i == 0) {
+          ctx.fillStyle = this.game.ball.color;
+          ctx.strokeStyle = this.game.ball.color;
+        } else {
+          while (this.colors[i] == this.game.ball.color) {
+            shuffleArray(this.colors);
+          }
+          ctx.fillStyle = this.colors[i];
+          ctx.strokeStyle = this.colors[i];
+        }
+        ctx.fill();
+        ctx.stroke();
+      }
+      ctx.beginPath();
+      ctx.arc(
+        this.position.x,
+        this.position.y,
+        this.radius - 3 * this.thick - 1,
+        0,
+        Math.PI * 2,
+        true
+      );
+      ctx.fillStyle = "#272727";
+      ctx.strokeStyle = "#272727";
+      ctx.fill();
+    }
+    if (this.type == 4) {
+      ctx.save();
+      ctx.translate(this.position.x, this.position.y);
+      ctx.rotate(this.startAngle);
+      ctx.fillStyle = this.colors[0];
+      ctx.fillRect(0, 0, 100, 20);
+      ctx.restore();
+
+      ctx.save();
+      ctx.translate(this.position.x, this.position.y);
+      ctx.rotate(Math.PI / 2 + this.startAngle);
+      ctx.fillStyle = this.colors[1];
+      ctx.fillRect(0, 0, 100, 20);
+      ctx.restore();
+
+      ctx.save();
+      ctx.translate(this.position.x, this.position.y);
+      ctx.rotate(Math.PI + this.startAngle);
+      ctx.fillStyle = this.colors[2];
+      ctx.fillRect(0, 0, 100, 20);
+      ctx.restore();
+
+      ctx.save();
+      ctx.translate(this.position.x, this.position.y);
+      ctx.rotate((3 * Math.PI) / 2 + this.startAngle);
+      ctx.fillStyle = this.colors[3];
+      ctx.fillRect(0, 0, 100, 20);
+      ctx.restore();
+
+      ctx.save();
+      ctx.translate(this.position.x, this.position.y);
+      ctx.beginPath();
+      ctx.arc(0, 0, 30, 0, Math.PI * 2, true);
+      ctx.fillStyle = "#272727";
+      ctx.strokeStyle = "#272727";
+      ctx.fill();
+      ctx.restore();
+    }
   }
   update(game) {
     this.speed.y += this.gravity / 100;
@@ -146,8 +274,15 @@ export default class Obstacle {
       this.passed = true;
     }
 
-    if (this.type == 1) {
+    if (this.type == 1 || this.type == 3) {
       this.startAngle += (this.angularSpeed / 180) * Math.PI;
+    }
+    if (this.type == 4) {
+      this.startAngle += (this.angularSpeed / 360) * Math.PI;
+    }
+
+    if (this.type == 3) {
+      this.startAngle2 += (this.angularSpeed / 360) * Math.PI;
     }
     // if (this.type == 2) {
     //   if (this.triPos.y[0] < this.position.y - this.triRadius[0]) {
