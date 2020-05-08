@@ -7,7 +7,7 @@ export default class Obstacle {
     this.game = game;
     this.indices = new Array();
     this.passed = false;
-    this.type = params.type;
+    this.type = getRndInt(1, 5);
     this.direction = 1;
     this.direction = getRndInt(0, 1);
     this.position = {
@@ -65,7 +65,7 @@ export default class Obstacle {
     if (this.type == 4 && this.angularSpeed > 0) {
       this.position.x = this.position.x + 50;
     }
-    if (this.type == 3) {
+    if (this.type == 3 || this.type == 5) {
       this.radius *= 1.5;
       this.angularSpeed /= 2;
     }
@@ -252,6 +252,35 @@ export default class Obstacle {
       ctx.fill();
       ctx.restore();
     }
+    if (this.type == 5) {
+      ctx.save();
+      ctx.translate(this.position.x, this.position.y);
+      // ctx.arc(0, 0, 10, 0, Math.PI * 2);
+      // ctx.fillStyle = this.colors[0];
+      // ctx.fill();
+      ctx.rotate(this.startAngle);
+      var length = 180;
+      var breadth = 20;
+      ctx.fillStyle = this.colors[0];
+      ctx.fillRect(-length / 2, -length / 2, length, breadth);
+      ctx.fillStyle = this.colors[1];
+      ctx.fillRect(-length / 2, length / 2 - breadth, length, breadth);
+      ctx.fillStyle = this.colors[2];
+      ctx.fillRect(
+        -length / 2,
+        -length / 2 + breadth,
+        breadth,
+        length - 2 * breadth
+      );
+      ctx.fillStyle = this.colors[3];
+      ctx.fillRect(
+        length / 2 - breadth,
+        -length / 2 + breadth,
+        breadth,
+        length - 2 * breadth
+      );
+      ctx.restore();
+    }
   }
   update(game) {
     this.speed.y += this.gravity / 100;
@@ -274,7 +303,7 @@ export default class Obstacle {
       this.passed = true;
     }
 
-    if (this.type == 1 || this.type == 3) {
+    if (this.type == 1 || this.type == 3 || this.type == 5) {
       this.startAngle += (this.angularSpeed / 180) * Math.PI;
     }
     if (this.type == 4) {
