@@ -7,7 +7,7 @@ export default class Obstacle {
     this.game = game;
     this.indices = new Array();
     this.passed = false;
-    this.type = getRndInt(1, 5);
+    this.type = getRndInt(1, 6);
     this.direction = 1;
     this.direction = getRndInt(0, 1);
     this.position = {
@@ -65,7 +65,7 @@ export default class Obstacle {
     if (this.type == 4 && this.angularSpeed > 0) {
       this.position.x = this.position.x + 50;
     }
-    if (this.type == 3 || this.type == 5) {
+    if (this.type == 3 || this.type == 5 || this.type == 6) {
       this.radius *= 1.5;
       this.angularSpeed /= 2;
     }
@@ -281,6 +281,38 @@ export default class Obstacle {
       );
       ctx.restore();
     }
+    if (this.type == 6) {
+      ctx.save();
+      ctx.translate(this.position.x, this.position.y);
+      // ctx.beginPath();
+      // ctx.arc(0, 0, 10, 0, Math.PI * 2);
+      // ctx.fillStyle = this.colors[0];
+      // ctx.fill();
+      // ctx.closePath();
+      ctx.rotate(this.startAngle);
+      var length = 230;
+      var breadth = 20;
+      for (var i = 0; i < 3; i++) {
+        if (i == 0) {
+          ctx.fillStyle = this.game.ball.color;
+          ctx.strokeStyle = this.game.ball.color;
+        } else {
+          ctx.rotate((2 * Math.PI) / 3);
+          while (this.colors[i] == this.game.ball.color) {
+            shuffleArray(this.colors);
+          }
+          ctx.fillStyle = this.colors[i];
+          ctx.strokeStyle = this.colors[i];
+        }
+        ctx.fillRect(
+          -length / 2 + length / 8,
+          -length / 2 + length / 8,
+          length,
+          breadth
+        );
+      }
+      ctx.restore();
+    }
   }
   update(game) {
     this.speed.y += this.gravity / 100;
@@ -303,7 +335,7 @@ export default class Obstacle {
       this.passed = true;
     }
 
-    if (this.type == 1 || this.type == 3 || this.type == 5) {
+    if (this.type == 1 || this.type == 3 || this.type == 5 || this.type == 6) {
       this.startAngle += (this.angularSpeed / 180) * Math.PI;
     }
     if (this.type == 4) {
