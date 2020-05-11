@@ -8,6 +8,7 @@ export default class Obstacle {
     this.indices = new Array();
     this.passed = false;
     this.type = getRndInt(1, 6);
+    // this.type = 6;
     this.direction = 1;
     this.direction = getRndInt(0, 1);
     this.position = {
@@ -20,7 +21,7 @@ export default class Obstacle {
       x: 0,
       y: 0
     };
-    this.size = 100;
+    this.size = 125;
     this.triPos = {
       x: [
         this.position.x - this.size,
@@ -281,36 +282,56 @@ export default class Obstacle {
       );
       ctx.restore();
     }
+
     if (this.type == 6) {
       ctx.save();
       ctx.translate(this.position.x, this.position.y);
-      // ctx.beginPath();
-      // ctx.arc(0, 0, 10, 0, Math.PI * 2);
-      // ctx.fillStyle = this.colors[0];
-      // ctx.fill();
-      // ctx.closePath();
       ctx.rotate(this.startAngle);
-      var length = 230;
-      var breadth = 20;
       for (var i = 0; i < 3; i++) {
+        ctx.beginPath();
+        ctx.lineTo(
+          this.triPos.x[i % 3] - this.position.x,
+          this.triPos.y[i % 3] - this.position.y
+        );
+        ctx.lineTo(
+          this.triPos.x[(i + 1) % 3] - this.position.x,
+          this.triPos.y[(i + 1) % 3] - this.position.y
+        );
+        ctx.lineTo(0, 0);
         if (i == 0) {
           ctx.fillStyle = this.game.ball.color;
           ctx.strokeStyle = this.game.ball.color;
         } else {
-          ctx.rotate((2 * Math.PI) / 3);
           while (this.colors[i] == this.game.ball.color) {
             shuffleArray(this.colors);
           }
           ctx.fillStyle = this.colors[i];
           ctx.strokeStyle = this.colors[i];
         }
-        ctx.fillRect(
-          -length / 2 + length / 8,
-          -length / 2 + length / 8,
-          length,
-          breadth
-        );
+
+        ctx.fill();
+        ctx.closePath();
       }
+      ctx.beginPath();
+      ctx.lineTo(
+        this.triPos.x2[0] - this.position.x,
+        this.triPos.y2[0] - this.position.y
+      );
+      ctx.lineTo(
+        this.triPos.x2[1] - this.position.x,
+        this.triPos.y2[1] - this.position.y
+      );
+      ctx.lineTo(
+        this.triPos.x2[2] - this.position.x,
+        this.triPos.y2[2] - this.position.y
+      );
+      ctx.lineTo(
+        this.triPos.x2[0] - this.position.x,
+        this.triPos.y2[0] - this.position.y
+      );
+      ctx.fillStyle = "#272727";
+      ctx.fill();
+      ctx.closePath();
       ctx.restore();
     }
   }
@@ -345,37 +366,7 @@ export default class Obstacle {
     if (this.type == 3) {
       this.startAngle2 += (this.angularSpeed / 360) * Math.PI;
     }
-    // if (this.type == 2) {
-    //   if (this.triPos.y[0] < this.position.y - this.triRadius[0]) {
-    //     this.direction *= -1;
-    //   }
-    //   if (this.triPos.y[0] > this.position.y + this.triRadius[0]) {
-    //     this.direction *= -1;
-    //   }
 
-    //   for (var i = 0; i < 3; i++) {
-    //     this.triPos.y[i] += this.angularSpeed;
-    //     this.triPos.x[i] =
-    //       -this.direction *
-    //         Math.sqrt(
-    //           this.triRadius[0] * this.triRadius[0] -
-    //             (this.triPos.y[i] - this.position.y) ** 2
-    //         ) +
-    //       this.position.x;
-    //     console.log(this.triPos);
-    //   }
-
-    //   for (var i = 0; i < 3; i++) {
-    //     this.triPos.y2[i] += this.angularSpeed;
-    //     this.triPos.x2[i] =
-    //       -this.direction *
-    //         Math.sqrt(
-    //           this.triRadius[1] * this.triRadius[1] -
-    //             (this.triPos.y2[i] - this.position.y) ** 2
-    //         ) +
-    //       this.position.x;
-    //   }
-    // }
     if (this.type == 2) {
       if (game.counter % 100 == 0) {
         shuffleArray(this.colors);
