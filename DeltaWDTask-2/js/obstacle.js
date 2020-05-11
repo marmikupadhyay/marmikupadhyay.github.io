@@ -7,8 +7,8 @@ export default class Obstacle {
     this.game = game;
     this.indices = new Array();
     this.passed = false;
-    this.type = getRndInt(1, 6);
-    // this.type = 6;
+    this.type = getRndInt(1, 7);
+    // this.type = 7;
     this.direction = 1;
     this.direction = getRndInt(0, 1);
     this.position = {
@@ -70,6 +70,13 @@ export default class Obstacle {
       this.radius *= 1.5;
       this.angularSpeed /= 2;
     }
+
+    if (this.type == 7) {
+      this.position.x = this.position.x + this.radius - 10;
+      this.position.x2 = this.position.x - 2 * this.radius + 20;
+      this.startAngle = 0;
+      this.startAngle2 = this.startAngle + Math.PI;
+    }
   }
 
   draw(ctx) {
@@ -112,20 +119,6 @@ export default class Obstacle {
       ctx.fillStyle = "#272727";
       ctx.strokeStyle = "#272727";
       ctx.fill();
-    }
-    if (this.type == 10) {
-      ctx.moveTo(this.triPos.x[2], this.triPos.y[2]);
-
-      for (var i = 0; i < 3; i++) {
-        ctx.beginPath();
-        ctx.lineTo(this.triPos.x[i], this.triPos.y[i]);
-        ctx.lineTo(this.triPos.x2[i], this.triPos.y2[i]);
-        ctx.lineTo(this.triPos.x2[(i + 2) % 3], this.triPos.y2[(i + 2) % 3]);
-        ctx.lineTo(this.triPos.x[(i + 2) % 3], this.triPos.y[(i + 2) % 3]);
-        ctx.closePath();
-        ctx.fillStyle = this.colors[i];
-        ctx.fill();
-      }
     }
     if (this.type == 2) {
       ctx.beginPath();
@@ -334,6 +327,76 @@ export default class Obstacle {
       ctx.closePath();
       ctx.restore();
     }
+    if (this.type == 7) {
+      for (var i = 0; i < this.number; i++) {
+        this.startAngle = this.startAngle + (2 * Math.PI) / this.number;
+        this.startAngle2 = this.startAngle2 + (2 * Math.PI) / this.number;
+        var endAngle = this.startAngle + (2 * Math.PI) / this.number;
+        var endAngle2 = this.startAngle2 + (2 * Math.PI) / this.number;
+
+        if (i == 0) {
+          ctx.fillStyle = this.game.ball.color;
+          ctx.strokeStyle = this.game.ball.color;
+        } else {
+          while (this.colors[i] == this.game.ball.color) {
+            shuffleArray(this.colors);
+          }
+          ctx.fillStyle = this.colors[i];
+          ctx.strokeStyle = this.colors[i];
+        }
+
+        ctx.beginPath();
+        ctx.moveTo(this.position.x, this.position.y);
+        ctx.arc(
+          this.position.x,
+          this.position.y,
+          this.radius,
+          this.startAngle,
+          endAngle
+        );
+        ctx.fill();
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.moveTo(this.position.x2, this.position.y);
+        ctx.arc(
+          this.position.x2,
+          this.position.y,
+          this.radius,
+          this.startAngle2,
+          endAngle2
+        );
+        ctx.fill();
+        ctx.stroke();
+        ctx.closePath();
+      }
+
+      ctx.beginPath();
+      ctx.arc(
+        this.position.x,
+        this.position.y,
+        this.radius - this.thick,
+        0,
+        Math.PI * 2,
+        true
+      );
+      ctx.fillStyle = "#272727";
+      ctx.strokeStyle = "#272727";
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(
+        this.position.x2,
+        this.position.y,
+        this.radius - this.thick,
+        0,
+        Math.PI * 2,
+        true
+      );
+      ctx.fillStyle = "#272727";
+      ctx.strokeStyle = "#272727";
+      ctx.fill();
+    }
   }
   update(game) {
     this.speed.y += this.gravity / 100;
@@ -358,12 +421,13 @@ export default class Obstacle {
 
     if (this.type == 1 || this.type == 3 || this.type == 5 || this.type == 6) {
       this.startAngle += (this.angularSpeed / 180) * Math.PI;
+      this.startAngle2 += (this.angularSpeed / 180) * Math.PI;
     }
-    if (this.type == 4) {
+    if (this.type == 4 || this.type == 7) {
       this.startAngle += (this.angularSpeed / 360) * Math.PI;
     }
 
-    if (this.type == 3) {
+    if (this.type == 3 || this.type == 7) {
       this.startAngle2 += (this.angularSpeed / 360) * Math.PI;
     }
 
