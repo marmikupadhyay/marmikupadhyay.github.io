@@ -67,6 +67,10 @@ body {
   width: 100%;
 }
 
+.mybox span {
+  font-size: 2em;
+}
+
 .typewriter {
   animation: typing 3.5s steps(30, end), blink-caret 0.5s step-end infinite;
   overflow: hidden;
@@ -79,11 +83,13 @@ body {
   overflow: hidden;
   white-space: nowrap;
   border-right: 3px solid black;
+  display: block;
+  width: 50%;
 }
 
 @keyframes erase {
   from {
-    width: 100%;
+    width: 20%;
   }
   to {
     width: 0;
@@ -95,7 +101,7 @@ body {
     width: 0;
   }
   to {
-    width: 100%;
+    width: 50%;
   }
 }
 
@@ -381,6 +387,8 @@ body {
   margin: 30px 5%;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .sec-2 .skillbox h3 {
@@ -397,10 +405,15 @@ body {
 .sec-2 #skillwrap {
   display: flex;
   flex-direction: column;
-  width: 33%;
+  width: 25%;
   text-align: center;
   align-items: center;
 }
+
+.sec-2 .skillbox .skill.coding #skillwrap {
+  width: 33%;
+}
+
 .sec-2 .skillbox .skill img {
   height: auto;
   width: 50%;
@@ -831,6 +844,7 @@ body {
 
   .skill {
     width: 90%;
+    display: flex;
   }
   .tree .level .col-7 .info {
     font-size: 1.5vh !important;
@@ -866,5 +880,9 @@ body {
 
   .sidebox div {
     font-size: 0.75rem;
+  }
+
+  #skillwrap {
+    width: 50% !important;
   }
 }
