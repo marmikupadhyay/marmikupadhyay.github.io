@@ -810,12 +810,9 @@ body {
     flex-wrap: wrap;
     height: unset !important;
   }
-  #innerwrap {
-    all: unset !important;
-  }
   .row.mainpage .col-3.left {
     width: 100%;
-    position: unset;
+    position: relative;
     height: 100vh !important;
     /* display: none; */
   }
