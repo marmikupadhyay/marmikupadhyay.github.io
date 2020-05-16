@@ -340,13 +340,19 @@
           </div>
           <hr />
           <div class="banner">
-            <span id="s1"
-              >Numerous <br />
-              Events</span
+            <span id="s1" class="counter">
+              10
+            </span>
+            <span id="s1">
+              <br />
+              +Events</span
             >
-            <span id="s2"
-              >Countless <br />
-              Experiences</span
+            <span class="counter">
+              100
+            </span>
+            <span id="s2">
+              <br />
+              +Experiences</span
             >
           </div>
           <div></div>
@@ -420,7 +426,7 @@
                 onmouseover="showcard(this)"
                 onmouseout="hidecard(this)"
               >
-                <img src="images/02.jpg" alt="" class="card-img-top" />
+                <img src="images/duet.png" alt="" class="card-img-top" />
                 <div class="card-body invis">
                   <h4 class="card-title">Duet</h4>
                   <p class="card-text">
@@ -429,9 +435,14 @@
                     mechanics are working.
                   </p>
                   <a
+                    href="https://marmikupadhyay.github.io/duet"
+                    class="btn btn-block my-2 btn-primary rounded-0"
+                    >Play</a
+                  >
+                  <a
                     href="https://github.com/marmikupadhyay/game-coll/tree/master/duet"
                     class="btn btn-block my-2 btn-primary rounded-0"
-                    >Visit</a
+                    >Show Me the Code</a
                   >
                 </div>
               </div>
@@ -449,16 +460,20 @@
                   id="doosra"
                 />
                 <div class="card-body invis">
-                  <h4 class="card-title">Break Out</h4>
+                  <h4 class="card-title">Color Switch</h4>
                   <p class="card-text">
-                    This is a simple recreation of the famous computer game
-                    Break Out. Currently it doesn't have that many features but
-                    all basic mechanics are working.
+                    This is a simple recreation of the famous mobile game Color
+                    Switch.
                   </p>
                   <a
-                    href="https://github.com/marmikupadhyay/game-coll/tree/master/breakout"
+                    href="https://marmikupadhyay.github.io/DeltaWDTask-2"
                     class="btn btn-block my-2 btn-primary rounded-0"
-                    >Visit</a
+                    >Play</a
+                  >
+                  <a
+                    href="https://github.com/marmikupadhyay/DeltaWDTask-2"
+                    class="btn btn-block my-2 btn-primary rounded-0"
+                    >Show Me the Code</a
                   >
                 </div>
               </div>
@@ -473,16 +488,19 @@
               >
                 <img src="images/02.jpg" alt="" class="card-img-top" />
                 <div class="card-body invis">
-                  <h4 class="card-title">Ball Blast</h4>
+                  <h4 class="card-title">Tile Breaker</h4>
                   <p class="card-text">
-                    This is a simple recreation of the famous mobile game Ball
-                    Blast. Currently it doesn't have that many features but all
-                    basic mechanics are working.
+                    Very Basic Counting and tile braking Game.
                   </p>
                   <a
-                    href="https://github.com/marmikupadhyay/game-coll/tree/master/ballBlast"
+                    href="https://marmikupadhyay.github.io/deltaTask1"
                     class="btn btn-block my-2 btn-primary rounded-0"
-                    >Visit</a
+                    >Play</a
+                  >
+                  <a
+                    href="https://github.com/marmikupadhyay/DeltaWDTask-1"
+                    class="btn btn-block my-2 btn-primary rounded-0"
+                    >Show Me the Code</a
                   >
                 </div>
               </div>
@@ -494,7 +512,7 @@
                 onmouseout="hidecard(this)"
               >
                 <img
-                  src="images/03.jpg"
+                  src="images/nodeapp.png"
                   alt=""
                   class="card-img-top"
                   id="doosra"
@@ -508,7 +526,7 @@
                   <a
                     href="https://github.com/marmikupadhyay/TrialNodeApp"
                     class="btn btn-block my-2 btn-primary rounded-0"
-                    >Visit</a
+                    >Show Me the Code</a
                   >
                 </div>
               </div>
@@ -625,6 +643,17 @@
         </div>
       </div>
     </section>
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-2.1.1.min.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script>
+      $(".counter").counterUp({
+        time: 2000
+      });
+    </script>
   </body>
 </html>
 <!-- d3f6db-afe0ec-264b70-6bf8f5-0f5257? -->

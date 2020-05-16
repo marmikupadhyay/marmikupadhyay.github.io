@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
   let x = document.getElementById("sec-1");
   var c;
   function calcscroll(n, obj) {
@@ -27,7 +27,7 @@ window.onload = function() {
   y.addEventListener("scroll", calcscroll);
   var lens = [];
   var links = document.querySelectorAll(".navlink a");
-  window.addEventListener("scroll", function() {
+  window.addEventListener("scroll", function () {
     c = window.scrollY;
     lens[0] = 0;
     lens[1] = calcscroll(lens[0], s1);

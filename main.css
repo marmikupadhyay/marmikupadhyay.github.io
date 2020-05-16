@@ -391,6 +391,10 @@ body {
   justify-content: space-around;
 }
 
+.sec-2 .skillbox .progress-circle:hover {
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+}
+
 .sec-2 .skillbox h3 {
   border-left: 4px solid #8377d1;
   border-bottom: 1px solid lightgray;
@@ -401,6 +405,7 @@ body {
 .sec-2 .skillbox .skill h4 {
   /* border-bottom: 1px solid lightgrey; */
   margin: 15px;
+  border-bottom: 3px solid black;
 }
 .sec-2 #skillwrap {
   display: flex;
@@ -464,6 +469,20 @@ body {
 #skill2 h4,
 #skill2 .progress {
   margin-left: 5%;
+  margin-right: 5%;
+}
+#skill2 h4 {
+  border-bottom: 3px solid black;
+  width: 40%;
+}
+#skill2 .progress {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  height: 20px;
+}
+
+#skill2 .progress-bar {
+  height: 20px;
 }
 
 /* ##################### Part -3 ##################### */
@@ -694,6 +713,11 @@ body {
   /* background: #d3f6db; */
   background: #dd7373;
 }
+
+.row.mainpage .col-3.right .col-6 .mynav li:hover {
+  opacity: 0.8;
+}
+
 .row.mainpage .col-3.right .col-6 .mynav li a {
   color: black;
   font-size: 1.2em;
