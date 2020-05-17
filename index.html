@@ -688,6 +688,16 @@
         </div>
       </div>
     </section>
+
+    <div class="loader-wrapper">
+      <h1 class="display-1 text-white">Loading...</h1>
+      <div class="col-12 text-center">
+        <span class="loader">
+          <span class="loader-inner"></span>
+        </span>
+      </div>
+    </div>
+
     <script
       type="text/javascript"
       src="https://code.jquery.com/jquery-2.1.1.min.js"
@@ -698,6 +708,9 @@
     <script>
       $(".counter").counterUp({
         time: 2000
+      });
+      $(window).on("load", function () {
+        $(".loader-wrapper").fadeOut("slow");
       });
     </script>
   </body>
