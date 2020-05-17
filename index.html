@@ -3,6 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
     <!-- Latest compiled and minified CSS -->
     <link
       rel="stylesheet"
@@ -538,69 +550,102 @@
             <h1>Get In Touch</h1>
           </div>
           <hr />
-          <div id="dabba">
-            <div class="form-container">
-              <form id="gform" onsubmit="return contactFormSubmit();">
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Name"
-                    name="name"
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Email"
-                    name="email"
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Subject"
-                    name="subject"
-                  />
-                </div>
-                <div class="form-group">
-                  <textarea
-                    id="message"
-                    cols="30"
-                    rows="7"
-                    class="form-control"
-                    placeholder="Message"
-                    name="message"
-                    form="gform"
-                  ></textarea>
-                </div>
-                <div class="form-group">
-                  <input
-                    type="submit"
-                    class="btn btn-primary btn-send-message"
-                    value="Send Message"
-                    id="contactSubmitBtn"
-                  />
-                </div>
-              </form>
-            </div>
-            <div class="sidebox">
-              <div>
-                <img src="images/mail_logo.png" alt="" />
-                <h2>MARMIKUPADHYAY.MU@GMAIL.COM</h2>
+          <div class="form-container col s10 offset-s1 z-depth-1 hoverable">
+            <form action="#" class="col s12">
+              <div class="input-field col s12 m6">
+                <i class="material-icons prefix">person</i>
+                <input id="first_name" type="text" class="validate" />
+                <label for="first_name">First Name</label>
               </div>
-              <div>
+              <div class="input-field col s12 m6">
+                <i class="material-icons prefix">person</i>
+                <input id="last_name" type="text" class="validate" />
+                <label for="last_name">Last Name</label>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">mail</i>
+                  <input id="email" type="email" class="validate" />
+                  <label for="email">Email</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">call</i>
+                  <input id="phone" type="number" class="validate" />
+                  <label for="phone">Phone Number</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">mode_edit</i>
+                  <textarea
+                    type="email"
+                    id="textarea"
+                    class="materialize-textarea"
+                  ></textarea>
+                  <label class="active" for="textarea">Message</label>
+                </div>
+              </div>
+              <button
+                class="btn blue lighten-2 btn-medium waves-effect mb-4"
+                type="submit"
+              >
+                <i class="material-icons left">send</i>Send
+              </button>
+            </form>
+          </div>
+          <div class="contact-wrap p-0 col s10 offset-s1 my-4">
+            <div class="col s12 contact z-depth-1 hoverable">
+              <div class="contact-item col-6 center-align">
+                <img src="images/mail_logo.png" alt="" />
+                <p>MARMIKUPADHYAY.MU@GMAIL.COM</p>
+              </div>
+              <div class="contact-item col-6 center align">
                 <img src="images/call_logo.png" alt="" />
-                <h2>7016700419</h2>
+                <p>7016700419</p>
               </div>
             </div>
           </div>
-          <div id="nakama"></div>
         </section>
+        <div class="fixed-action-btn">
+          <a href="#/" class="btn-floating red btn-large"
+            ><i class="large material-icons">menu</i></a
+          >
+          <ul>
+            <li>
+              <a href="#sec-1" class="btn-floating yellow btn-large"
+                ><i class="large material-icons">person</i></a
+              >
+            </li>
+            <li>
+              <a href="#sec-2" class="btn-floating blue btn-large"
+                ><i class="large material-icons">code</i></a
+              >
+            </li>
+            <li>
+              <a href="#sec-3" class="btn-floating green btn-large"
+                ><i class="large material-icons">memory</i></a
+              >
+            </li>
+            <li>
+              <a href="#sec-4" class="btn-floating orange btn-large"
+                ><i class="large material-icons">emoji_events</i></a
+              >
+            </li>
+            <li>
+              <a href="#sec-5" class="btn-floating pink btn-large"
+                ><i class="large material-icons">developer_mode</i></a
+              >
+            </li>
+            <li>
+              <a href="#sec-6" class="btn-floating orange btn-large"
+                ><i class="large material-icons">mail</i></a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
-      <div id="empty"></div>
       <div class="col-3 right">
         <div class="col-6">
           <nav id="#meranav">
@@ -649,6 +694,7 @@
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
     <script>
       $(".counter").counterUp({
         time: 2000

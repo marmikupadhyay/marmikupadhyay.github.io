@@ -10,6 +10,7 @@ html {
 
 body {
   background: rgba(211, 246, 219, 0.5);
+  overflow-x: hidden;
 }
 
 .col-1,
@@ -427,7 +428,7 @@ body {
 .sec-2 .progress {
   margin: 15px;
   height: 1vh;
-  /* width: 100%; */
+  width: 90%;
   margin: auto;
   background: white;
 }
@@ -446,26 +447,7 @@ body {
 .progress-circle span {
   color: white;
 }
-/* 
-.sec-2 .progress .progress-bar::before {
-  content: "pp";
-  position: absolute;
-  right: 0;
-  color: black;
-  min-width: 2px;
-  height: auto;
-  border-radius: 100%;
-  background: white;
-}
- */
 
-.dot {
-  height: 25px;
-  width: 25px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-}
 #skill2 h4,
 #skill2 .progress {
   margin-left: 5%;
@@ -618,32 +600,21 @@ body {
 .sec-6 {
   position: relative;
 }
-
-.sec-6 #dabba {
-  display: flex;
-  flex-direction: row;
-  margin: 10% 0;
-}
-
 .form-container {
-  width: 50%;
-  float: right;
-  padding: 20px;
+  opacity: 1;
+  background: #d3f6db;
 }
-
 .form-container input {
   border-radius: 0;
   font-family: "Lato";
 }
 
-.sec-6 .sidebox {
+.sec-6 .contact-wrap {
   display: flex;
-  flex-direction: column;
-  width: 50%;
-  padding: 20px;
+  flex-direction: row;
 }
 
-.sec-6 .sidebox div {
+.sec-6 .contact-wrap div {
   margin: auto;
   margin-top: 0;
   text-align: center;
@@ -653,14 +624,17 @@ body {
   padding: 10px;
 }
 
-.sec-6 .sidebox div h2 {
+.sec-6 .contact-wrap div {
   font-size: 1em;
   font-family: "Lato";
   letter-spacing: 1px;
   text-transform: uppercase;
 }
-
-.sec-6 .sidebox div img {
+.sec-6 .contact-wrap .contact-item p {
+  font-size: 3vh;
+}
+.sec-6 .sidebox div img,
+.contact-wrap img {
   height: auto;
   width: 25%;
   margin: 10px;
@@ -675,6 +649,10 @@ body {
 }
 
 /* ###################### NAV ####################### */
+
+nav {
+  all: unset;
+}
 
 .row.mainpage .col-3.right {
   display: flex;
@@ -692,12 +670,6 @@ body {
 }
 
 .row.mainpage .col-3.right .col-6 .mynav {
-  /* grid-template-columns: auto;
-  grid-template-rows: auto auto auto auto;
-  position: sticky;
-  top: 0;
-  grid-gap: 20px; */
-
   justify-content: space-evenly;
   margin: 0;
   position: absolute;
@@ -712,6 +684,7 @@ body {
   background: #6bf8f5;
   /* background: #d3f6db; */
   background: #dd7373;
+  width: 100%;
 }
 
 .row.mainpage .col-3.right .col-6 .mynav li:hover {
@@ -724,6 +697,7 @@ body {
   text-decoration: none;
   margin: auto;
   height: 100%;
+  width: 100%;
   display: block;
   padding: 10px;
   text-align: center;
@@ -798,10 +772,18 @@ body {
   font-family: "Lato";
   font-weight: 100;
 }
+
+.fixed-action-btn {
+  display: none;
+}
+
 /* BetaTes****** */
 /* cbac8-7bd8c@alt.coms */
 
 @media only screen and (max-width: 680px) {
+  .fixed-action-btn {
+    display: unset;
+  }
   .heading h1 {
     margin-left: 0 !important;
   }
@@ -887,16 +869,13 @@ body {
   .sec-5 .row .col-6 {
     width: 100%;
   }
-  #dabba {
-    flex-direction: column !important;
-  }
 
   #dabba .form-container {
     width: 100%;
   }
 
-  #dabba .sidebox {
-    width: 100%;
+  .sec-6 .contact-wrap .contact-item p {
+    font-size: 1.5vh !important;
   }
 
   .sidebox div {
