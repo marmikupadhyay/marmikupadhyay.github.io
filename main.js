@@ -11,9 +11,7 @@ window.onload = function () {
   // console.log(tree.length);
   for (var i = tree.length - 1, j = 0; i >= 0; i--, j++) {
     {
-      console.log(tree[i]);
       tree[i].style.zIndex = i;
-      console.log(j);
     }
   }
   var s0 = document.getElementById("empty");

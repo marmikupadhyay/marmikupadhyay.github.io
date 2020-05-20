@@ -22,7 +22,7 @@
     />
     <link rel="shortcut icon" href="images/download.png" type="image/x-icon" />
     <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
     <link
       href="https://fonts.googleapis.com/css?family=Antic"
       rel="stylesheet"
@@ -69,22 +69,30 @@
             <hr />
           </div>
           <div class="row-4">
-            <ul class="profileUL">
+            <ul class="profileUL one">
               <li class="">
-                Age -
-                <span style="float: right; margin-right: 15px;"> 18</span>
+                Age -<span style="float: right; margin-right: 15px;"> 18</span>
               </li>
               <li class="">
-                Current Occupation-
-                <span style="float: right; margin-right: 15px;"> Student</span>
+                Current Occupation-<span
+                  style="float: right; margin-right: 15px;"
+                >
+                  Student</span
+                >
               </li>
               <li class="">
-                Currently at-
-                <span style="float: right; margin-right: 15px;">
+                Currently at-<span style="float: right; margin-right: 15px;">
                   Trichy,India</span
                 >
               </li>
-              <li class=""></li>
+            </ul>
+            <ul class="profileUL two hide">
+              <li class="text-center">Age -18
+              </li>
+              <li class="text-center">
+                Currently Student
+              </li>
+              <li class="text-center">At Trichy,India</li>
             </ul>
           </div>
           <hr id="leftend" />
@@ -608,7 +616,44 @@
             </div>
           </div>
         </section>
-        <div class="fixed-action-btn click-to-toggle">
+        <div class="fixed-action-btn one click-to-toggle">
+          <a href="#/" class="btn-floating red btn-large"
+            ><i class="large material-icons">menu</i></a
+          >
+          <ul>
+            <li>
+              <a href="#sec-1" class="btn-floating yellow btn-large"
+                ><i class="large material-icons">person</i></a
+              >
+            </li>
+            <li>
+              <a href="#sec-2" class="btn-floating blue btn-large"
+                ><i class="large material-icons">code</i></a
+              >
+            </li>
+            <li>
+              <a href="#sec-3" class="btn-floating green btn-large"
+                ><i class="large material-icons">memory</i></a
+              >
+            </li>
+            <li>
+              <a href="#sec-4" class="btn-floating orange btn-large"
+                ><i class="large material-icons">emoji_events</i></a
+              >
+            </li>
+            <li>
+              <a href="#sec-5" class="btn-floating pink btn-large"
+                ><i class="large material-icons">developer_mode</i></a
+              >
+            </li>
+            <li>
+              <a href="#sec-6" class="btn-floating orange btn-large"
+                ><i class="large material-icons">mail</i></a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="fixed-action-btn two click-to-toggle hide">
           <a href="#/" class="btn-floating red btn-large"
             ><i class="large material-icons">menu</i></a
           >
@@ -702,15 +747,29 @@
       type="text/javascript"
       src="https://code.jquery.com/jquery-2.1.1.min.js"
     ></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
       $(".counter").counterUp({
         time: 2000
       });
       $(window).on("load", function () {
         $(".loader-wrapper").fadeOut("slow");
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var elems = document.querySelectorAll(".fixed-action-btn.one");
+        var instances = M.FloatingActionButton.init(elems, {
+          hoverEnabled: false
+        });
+
+        elems = document.querySelectorAll(".fixed-action-btn.two");
+        var instances2 = M.FloatingActionButton.init(elems, {
+          direction: "left",
+          hoverEnabled: false
+        });
       });
     </script>
   </body>

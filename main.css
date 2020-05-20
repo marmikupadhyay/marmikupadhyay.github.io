@@ -237,7 +237,9 @@ body {
 #innerwrap {
   position: absolute;
   top: 50%;
-  transform: translate(0, -50%);
+  left: 50%;
+  width: 95%;
+  transform: translate(-50%, -50%);
 }
 
 .row.mainpage .col-3.left .row-1 {
@@ -860,9 +862,43 @@ nav {
 /* BetaTes****** */
 /* cbac8-7bd8c@alt.coms */
 
+@media only screen and (max-width: 850px) {
+  .profileUL.one {
+    display: none !important;
+  }
+  .profileUL.two {
+    display: block !important;
+  }
+
+  .profileUL.two li {
+    margin-left: 0 !important;
+  }
+
+  .fixed-action-btn.two {
+    display: unset !important;
+  }
+  .fixed-action-btn.one {
+    display: none !important;
+  }
+  .row.mainpage .col-3.right {
+    display: none;
+  }
+  .row.mainpage .col-3.left {
+    width: 33.33%;
+  }
+
+  .row.mainpage > .col-6 {
+    left: 33.33%;
+    width: 66.66%;
+  }
+}
+
 @media only screen and (max-width: 680px) {
-  .fixed-action-btn {
-    display: unset;
+  .fixed-action-btn.one {
+    display: unset !important;
+  }
+  .fixed-action-btn.two {
+    display: none !important;
   }
   .heading h1 {
     margin-left: 0 !important;
@@ -881,6 +917,14 @@ nav {
   .row.mainpage .col-3.right {
     display: none;
   }
+
+  .profileUL.one {
+    display: block !important;
+  }
+  .profileUL.two {
+    display: none !important;
+  }
+
   .row.mainpage .col-6 {
     width: 100%;
     position: unset;
