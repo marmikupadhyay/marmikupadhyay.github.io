@@ -867,7 +867,7 @@ nav {
     display: none !important;
   }
   .profileUL.two {
-    display: block !important;
+    display: none !important;
   }
 
   .profileUL.two li {
