@@ -12,9 +12,6 @@
   font-family: "Lato", sans-serif;
 }
 
-.boxed {
-}
-
 .card {
   margin: 20px;
 }
@@ -42,10 +39,17 @@ label {
   font-size: 1.5em !important;
 }
 
-.answer-box {
-}
-
 .info {
   padding: 10px;
   font-size: 1.2em;
+}
+
+blockquote.info {
+  margin-left: 20px;
+  font-size: 1.5em;
+}
+
+.credit-box {
+  padding-bottom: 20px;
+  margin-bottom: 10px;
 }
