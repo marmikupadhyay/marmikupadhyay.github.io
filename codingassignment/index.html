@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSPC ASSIGNMENT - 073</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="row">
+      <div class="col m6 s12 grey lighten-5">
+        <div class="center head indigo accent-1">
+          <h1>Assignment Q 23 b)</h1>
+          <hr />
+        </div>
+        <div class="question-box z-depth-3">
+          <h4 class="subhead">Problem Statement</h4>
+          <div class="card">
+            <div class="card-image materialboxed">
+              <img src="23 b.JPG" alt="" />
+              <span class="card-title"></span>
+            </div>
+            <div class="card-content">
+              <p>
+                How Many Different Bit Strings Can be formed with six 1's and
+                eight 0's. <br /><br />
+                Generalized Problem :- How many Bit Strings can be formed with
+                'm' 1's and 'n' 0's.
+              </p>
+            </div>
+            <div class="card-action">
+              <a>Language Used - JAVASCRIPT</a>
+              <br />
+              <a
+                >Method Used - Factorial Algorithm and <sup>p</sup> N
+                <sub>c</sub></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="answer-box z-depth-3">
+          <h4 class="subhead">Try It Yourself</h4>
+          <div class="form-box" id="form-1">
+            <div class="input-field col m4 s12">
+              <input id="zero" type="number" class="validate" value="8" />
+              <label for="zero">Number of zero's</label>
+            </div>
+            <div class="input-field col m4 s12">
+              <input id="one" type="number" class="validate" value="6" />
+              <label for="one">Number of one's</label>
+            </div>
+            <div class="input-field col m4 s12">
+              <button class="btn waves-effect waves-light" onclick="solveq1()">
+                Calculate
+                <i class="material-icons right">send</i>
+              </button>
+            </div>
+          </div>
+          <div id="answer"></div>
+        </div>
+        <div class="code-box z-depth-3">
+          <h4 class="subhead">The Code Used</h4>
+          <p class="info">
+            You Can see the entire Code In the js file attached in assignement.
+            There are two functions named solveq1 and solveq2 each of which
+            contain the code of respective questions.
+          </p>
+          <div class="card">
+            <div class="card-image materialboxed">
+              <img src="23 b code.png" alt="" />
+              <span class="card-title"></span>
+            </div>
+            <div class="card-content">
+              <p>
+                Here is the Code mainly used for the calculation. Tap to view.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="explanation-box z-depth-3">
+          <h4 class="subhead">Explanation of the Code</h4>
+          <p class="info">
+            The code basically takes input of two numbers nos0(Number of zero's)
+            and nos1(Number of one's) from the user. <br />
+            <br />
+            And to find the number of bit strings using that we calculate the
+            <br />
+            <sup>n</sup>C<sub>r</sub> <br />
+            Where n is total of nos0 and nos1 and r is either of nos0 or nos1.
+            <br /><br />
+            This caclulated value of <sup>n</sup>C<sub>r</sub> is the answer. In
+            the code the function "combi" calculates the value of
+            <sup>n</sup>C<sub>r</sub>
+          </p>
+        </div>
+      </div>
+      <div class="col m6 s12">
+        <div class="head center cyan lighten-3">
+          <h1>Assignment Q 24 a) i)</h1>
+          <hr />
+        </div>
+        <div class="question-box z-depth-3">
+          <h4 class="subhead">Problem Statement</h4>
+          <div class="card">
+            <div class="card-image materialboxed">
+              <img src="24 a 1.JPG" alt="" />
+              <span class="card-title"></span>
+            </div>
+            <div class="card-content">
+              <p>
+                Find the first six term of the sequence defined by the
+                recurrence relation and inital condition. <br />
+                <br />
+                i.) a <sub>n</sub> = a<sub>n-1</sub> - a<sub>n-2</sub>
+                <br />
+                Inital Condtion:- a<sub>0</sub>=2 , a<sub>1</sub>=-1
+              </p>
+            </div>
+            <div class="card-action">
+              <a>Language Used - JAVASCRIPT</a>
+              <br />
+              <a>Method Used - Recursion</a>
+            </div>
+          </div>
+        </div>
+        <div class="answer-box z-depth-3">
+          <h4 class="subhead">Try It Yourself</h4>
+          <div class="form-box" id="form-2">
+            <div class="input-field col m4 s12">
+              <input id="first-term" type="number" class="validate" value="2" />
+              <label for="first-term">Value of a<sub>0</sub></label>
+            </div>
+            <div class="input-field col m4 s12">
+              <input
+                id="second-term"
+                type="number"
+                class="validate"
+                value="-1"
+              />
+              <label for="second-term">Value of a<sub>1</sub></label>
+            </div>
+            <div class="input-field col m4 s12">
+              <button class="btn waves-effect waves-light" onclick="solveq2()">
+                Calculate
+                <i class="material-icons right">send</i>
+              </button>
+            </div>
+          </div>
+          <div id="answer2"></div>
+        </div>
+        <div class="code-box z-depth-3">
+          <h4 class="subhead">The Code Used</h4>
+          <p class="info">
+            You Can see the entire Code In the js file attached in assignement.
+            There are two functions named solveq1 and solveq2 each of which
+            contain the code of respective questions.
+          </p>
+          <div class="card">
+            <div class="card-image materialboxed">
+              <img src="24 a i code.png" alt="" />
+              <span class="card-title"></span>
+            </div>
+            <div class="card-content">
+              <p>
+                Here is the Code mainly used for the calculation. Tap to view.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="explanation-box z-depth-3">
+          <h4 class="subhead">Explanation of the Code</h4>
+          <p class="info">
+            The code basically takes input of two numbers a0(Initial Value of
+            a0) and a1(Inital Value of a1 ) from the user. <br />
+            <br />
+            And to find the first 6 terms of the expression we use recussion.
+            <br />
+            <br />
+            A function named recursive is there which takes input n and has two
+            end cases where n==1 or n==2 it returns the initial values in this
+            end cases.
+            <br />
+            <br />
+            Else it returns f(n-1) - f(n-2);
+            <br />
+            The Values are stored in an array called ans.
+          </p>
+        </div>
+      </div>
+    </div>
+    <script src="main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var elems = document.querySelectorAll(".materialboxed");
+        var instances = M.Materialbox.init(elems, {});
+      });
+    </script>
+  </body>
+</html>
