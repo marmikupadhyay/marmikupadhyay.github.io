@@ -332,6 +332,13 @@ body {
   left: 25%;
 }
 
+#dp {
+  filter: drop-shadow(0px 0px 5px #000000);
+  transform: scale(1.2);
+  margin-top: -1em;
+  user-select: none;
+}
+
 .sec-1,
 .sec-2 {
   width: 100%;
@@ -419,11 +426,15 @@ body {
   display: flex;
   flex-direction: row;
   margin: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .sec-1 .hobbies .col-4 {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .sec-1 .hobbies .col-4 .hobbyitem {
@@ -505,6 +516,7 @@ body {
 .sec-2 .skillbox .skill img {
   height: auto;
   width: 50%;
+  filter: drop-shadow(0px 0px 2px #999797);
 }
 
 .sec-2 .progress {
@@ -585,75 +597,20 @@ body {
   float: right;
 }
 
+.exp-body {
+  min-height: 40vh;
+}
+
 /* ##################### Part -4 ##################### */
 
 .sec-4 {
   position: relative;
 }
 
-.sec-4 .row {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: -16%;
+.sec-4 .achi-body {
+  min-height: 40vh;
 }
 
-.tree {
-  display: flex;
-  flex-direction: column;
-}
-.tree .level .col-7 {
-  width: 54%;
-}
-.tree .level .col-5 {
-  width: 46%;
-}
-
-.tree .level .col-7.left {
-  background: url(images/treeleft.png);
-  background-size: cover;
-  float: left;
-  min-height: 200px;
-  min-width: 50%;
-  position: relative;
-  /* widows: 55%; */
-}
-.tree .level .col-7.left .info {
-  background: wheat;
-  margin: 5px;
-  font-size: 2vh;
-  position: absolute;
-  width: 40%;
-  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.7), 0 8px 20px 0 rgba(0, 0, 0, 0.6);
-  left: 30%;
-  top: 40%;
-}
-.tree .level .col-7.right .info {
-  background: wheat;
-  margin: 5px;
-  font-size: 2vh;
-  position: absolute;
-  width: 40%;
-  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.7), 0 8px 20px 0 rgba(0, 0, 0, 0.6);
-  left: 40%;
-  top: 40%;
-}
-.tree .level .col-7 .info p {
-  margin: 5px;
-}
-
-.tree .level .col-7.right {
-  background: url(images/treeright.png);
-  float: right;
-  min-height: 200px;
-  min-width: 50%;
-  width: 57%;
-  position: relative;
-  background-size: cover;
-}
-
-.row.last {
-  margin-bottom: 0;
-}
 /* ##################### Part -5 ##################### */
 
 .sec-5 .row {
@@ -673,6 +630,9 @@ body {
   /* margin-right: 20px; */
 }
 
+.sec-5 .row .card .card-body {
+}
+
 .invis {
   display: none;
 }
@@ -689,8 +649,12 @@ body {
 .form-container input {
   border-radius: 0;
   font-family: "Lato";
+  cursor: not-allowed;
 }
 
+.sec-6 .form-container label {
+  cursor: not-allowed;
+}
 .sec-6 .contact-wrap {
   display: flex;
   flex-direction: row;
@@ -818,12 +782,13 @@ nav {
 
 /* Style the social media icons with color, if you want */
 .icon-bar a:hover {
-  background-color: #0f5257;
+  transform: scale(1.1);
 }
 
-.facebook {
-  background: #3b5998;
-  color: white;
+.instagram {
+  background: white;
+  color: red !important;
+  font-size: 1.7em !important;
 }
 
 .twitter {
@@ -836,13 +801,13 @@ nav {
   color: white;
 }
 
-.linkedin {
-  background: #007bb5;
-  color: white;
+.github {
+  font-size: 1.7em !important;
+  background: #24292e;
 }
 
-.youtube {
-  background: #bb0000;
+.linkedin {
+  background: #007bb5;
   color: white;
 }
 
@@ -858,9 +823,6 @@ nav {
 .fixed-action-btn {
   display: none;
 }
-
-/* BetaTes****** */
-/* cbac8-7bd8c@alt.coms */
 
 @media only screen and (max-width: 850px) {
   .profileUL.one {
@@ -885,6 +847,10 @@ nav {
   }
   .row.mainpage .col-3.left {
     width: 33.33%;
+  }
+
+  .sec-5 .row .col-6 {
+    width: 50%;
   }
 
   .row.mainpage > .col-6 {
@@ -949,16 +915,9 @@ nav {
     width: 100%;
   }
 
-  .hobbies {
-    flex-direction: column !important;
-  }
-
   .hobbies .col-4 {
-    width: 100%;
-    flex-direction: row !important;
-  }
-  .hobbies .col-4 .card {
     width: 50%;
+    flex-direction: row !important;
   }
 
   .banner span {
@@ -973,25 +932,13 @@ nav {
     width: 90%;
     display: flex;
   }
-  .tree .level .col-7 .info {
-    font-size: 1.5vh !important;
-    top: 30% !important;
-  }
-  .tree .level .col-7 {
-    width: 60% !important;
-  }
-  .tree .level .col-7.left {
-    background-position: right !important;
-  }
+
   #mob {
     display: unset !important;
   }
-  .sec-5 .row {
-    flex-direction: column !important;
-  }
 
   .sec-5 .row .col-6 {
-    width: 100%;
+    width: 50%;
   }
 
   #dabba .form-container {
